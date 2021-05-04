@@ -5,7 +5,7 @@ import Autosuggest, {
 } from "react-autosuggest";
 import Opinion from "../interfaces/Opinion";
 import {debounce} from "debounce";
-import CasesService from "../services/CasesService";
+import CaseService from "../services/CaseService";
 import {OnCaseSelected} from "./App";
 import AutosuggestTheme from "./AutosuggestTheme";
 import Spinner from "react-bootstrap/Spinner";
@@ -23,10 +23,12 @@ type CaseSearchState = {
 const MAX_SUGGESTIONS = 10
 
 class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
+    caseService: CaseService;
 
     constructor(props: CaseSearchProps) {
         super(props);
-        this.state = {query: "", suggestions: [], loadingSuggestions: false}
+        this.state = {query: "", suggestions: [], loadingSuggestions: false};
+        this.caseService = new CaseService();
     }
 
     renderSuggestion = ({cluster}: Opinion): JSX.Element => {
@@ -43,7 +45,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
         this.requestCounter++;
         const currentRequest = this.requestCounter;
         this.setState({loadingSuggestions: true})
-        CasesService.searchCases(queryValue, MAX_SUGGESTIONS).then(opinionResponse => {
+        this.caseService.searchCases(queryValue, MAX_SUGGESTIONS).then(opinionResponse => {
             if (currentRequest === this.requestCounter) {
                 // This filter should eventually be replaced with including the already selected cases in the query.
                 const unselectedResults = opinionResponse.filter(op =>
