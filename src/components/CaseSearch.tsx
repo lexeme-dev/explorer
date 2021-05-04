@@ -8,9 +8,11 @@ import {debounce} from "debounce";
 import CasesService from "../services/CasesService";
 import {OnCaseSelected} from "./App";
 import AutosuggestTheme from "./AutosuggestTheme";
+import Spinner from "react-bootstrap/Spinner";
 
 
 type CaseSearchProps = {
+    selectedCases: Opinion[]
     onCaseSelected: OnCaseSelected
 }
 type CaseSearchState = {
@@ -43,7 +45,10 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
         this.setState({loadingSuggestions: true})
         CasesService.searchCases(queryValue, MAX_SUGGESTIONS).then(opinionResponse => {
             if (currentRequest === this.requestCounter) {
-                this.setState({suggestions: opinionResponse, loadingSuggestions: false})
+                // This filter should eventually be replaced with including the already selected cases in the query.
+                const unselectedResults = opinionResponse.filter(op =>
+                    !this.props.selectedCases.some(selectedOp => selectedOp.id === op.id));
+                this.setState({suggestions: unselectedResults, loadingSuggestions: false})
             }
         })
     }
@@ -71,12 +76,14 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                     onSuggestionSelected={this.selectSuggestion}
                     suggestions={this.state.suggestions}
                     theme={AutosuggestTheme}
+                    highlightFirstSuggestion={true}
                 >
                 </Autosuggest>
-                {this.state.loadingSuggestions && <span>Currently loading...</span>}
+                {this.state.loadingSuggestions && <Spinner animation="border" role="status" size="sm"/>}
             </div>
         );
     }
+
 }
 
 export default CaseSearch;

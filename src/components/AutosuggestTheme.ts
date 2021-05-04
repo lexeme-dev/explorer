@@ -2,11 +2,12 @@ import {Theme} from "react-autosuggest";
 
 const AutosuggestTheme: Theme = {
     container: {
-        position: 'relative'
+        position: 'relative',
+        display: "inline-block"
     },
     input: {
-        width: 240,
-        height: 30,
+        width: 280,
+        height: 40,
         padding: '10px 20px',
         fontFamily: 'Helvetica, sans-serif',
         fontWeight: 300,
@@ -30,7 +31,6 @@ const AutosuggestTheme: Theme = {
     suggestionsContainerOpen: {
         display: 'block',
         position: 'absolute',
-        top: 51,
         width: 280,
         border: '1px solid #aaa',
         backgroundColor: '#fff',
