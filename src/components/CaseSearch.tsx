@@ -7,6 +7,7 @@ import Opinion from "../interfaces/Opinion";
 import {debounce} from "debounce";
 import CasesService from "../services/CasesService";
 import {OnCaseSelected} from "./App";
+import AutosuggestTheme from "./AutosuggestTheme";
 
 
 type CaseSearchProps = {
@@ -68,6 +69,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                     onSuggestionsClearRequested={() => this.setState({suggestions: []})}
                     onSuggestionSelected={this.selectSuggestion}
                     suggestions={this.state.suggestions}
+                    theme={AutosuggestTheme}
                 >
                 </Autosuggest>
                 {this.state.loadingSuggestions && <span>Currently loading...</span>}
