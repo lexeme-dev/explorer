@@ -3,7 +3,7 @@ import Autosuggest, {
     OnSuggestionSelected,
     SuggestionsFetchRequested,
 } from "react-autosuggest";
-import Opinion from "../interfaces/Opinion";
+import Opinion, {fullCaseName} from "../interfaces/Opinion";
 import {debounce} from "debounce";
 import CaseService from "../services/CaseService";
 import {OnCaseAdded} from "./App";
@@ -31,13 +31,8 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
         this.caseService = new CaseService();
     }
 
-    renderSuggestion = ({cluster}: Opinion): JSX.Element => {
-        let opinionDisplayText = cluster.case_name;
-        if (cluster.reporter != null) {
-            opinionDisplayText += `, ${cluster.reporter}`;
-        }
-        opinionDisplayText += ` (${cluster.year})`
-        return <span>{opinionDisplayText}</span>
+    renderSuggestion = (opinion: Opinion): JSX.Element => {
+        return <span>{fullCaseName(opinion)}</span>
     }
 
     requestCounter = 0;

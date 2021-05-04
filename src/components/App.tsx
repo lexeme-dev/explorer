@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import CaseSearch from "./CaseSearch";
-import Opinion from "../interfaces/Opinion";
+import Opinion, {fullCaseName} from "../interfaces/Opinion";
 import CaseService from "../services/CaseService";
 import Spinner from "react-bootstrap/Spinner";
 import {PlusSquare, XSquare} from "react-bootstrap-icons";
+import {Button} from "react-bootstrap";
 
 type CaseAction = (opinion: Opinion) => void
 export type OnCaseAdded = CaseAction
@@ -42,7 +43,8 @@ class App extends Component<{}, AppState> {
     loadRecommendations = () => {
         this.setState({recommendationsLoading: true});
         this.caseService.getSimilarCases(this.state.selectedCases, 5)
-            .then(recommendations => this.setState({recommendations, recommendationsLoading: false}));
+            .then(recommendations => this.setState({recommendations, recommendationsLoading: false}))
+            .catch(_ => this.setState({recommendations: [], recommendationsLoading: false}));
     }
 
     render() {
@@ -57,7 +59,10 @@ class App extends Component<{}, AppState> {
                     <h3>Currently Selected Cases</h3>
                     {this.state.selectedCases.map(opinion =>
                         <div key={opinion.id}>
-                            {opinion.cluster.case_name} &nbsp; <XSquare onClick={() => this.onCaseRemoved(opinion)}/>
+                            {fullCaseName(opinion)} &nbsp;
+                            <Button variant="link" size="sm" onClick={() => this.onCaseRemoved(opinion)}>
+                                <XSquare/>
+                            </Button>
                         </div>
                     )}
                 </div>
@@ -68,7 +73,10 @@ class App extends Component<{}, AppState> {
                         <Spinner animation="border" role="status"/> :
                         this.state.recommendations.map(rec =>
                             <div key={rec.id}>
-                                {rec.cluster.case_name} &nbsp; <PlusSquare onClick={() => this.onCaseAdded(rec)}/>
+                                {fullCaseName(rec)}
+                                <Button variant="link" size="sm" onClick={() => this.onCaseAdded(rec)}>
+                                    <PlusSquare className="align-text-top"/>
+                                </Button>
                             </div>
                         )}
                 </div>
