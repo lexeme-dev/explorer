@@ -1,11 +1,17 @@
 import React, {Component} from 'react';
-import Autosuggest, {SuggestionsFetchRequestedParams} from "react-autosuggest";
+import Autosuggest, {
+    OnSuggestionSelected,
+    SuggestionsFetchRequested,
+} from "react-autosuggest";
 import Opinion from "../interfaces/Opinion";
-import axios from "axios";
 import {debounce} from "debounce";
 import CasesService from "../services/CasesService";
+import {OnCaseSelected} from "./App";
 
-type CaseSearchProps = {}
+
+type CaseSearchProps = {
+    onCaseSelected: OnCaseSelected
+}
 type CaseSearchState = {
     query: string;
     suggestions: Opinion[];
@@ -30,7 +36,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
     }
 
     requestCounter = 0;
-    loadSuggestions = ({value: queryValue}: SuggestionsFetchRequestedParams) => {
+    loadSuggestions: SuggestionsFetchRequested = ({value: queryValue}) => {
         this.requestCounter++;
         const currentRequest = this.requestCounter;
         this.setState({loadingSuggestions: true})
@@ -41,6 +47,10 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
         })
     }
     debouncedLoadSuggestions = debounce(this.loadSuggestions, 200)
+
+    selectSuggestion: OnSuggestionSelected<Opinion> = (_, {suggestion}) => {
+        this.props.onCaseSelected(suggestion);
+    }
 
     render() {
         const inputProps: Autosuggest.InputProps<any> = {
@@ -56,7 +66,9 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                     renderSuggestion={this.renderSuggestion}
                     onSuggestionsFetchRequested={this.debouncedLoadSuggestions}
                     onSuggestionsClearRequested={() => this.setState({suggestions: []})}
-                    suggestions={this.state.suggestions}>
+                    onSuggestionSelected={this.selectSuggestion}
+                    suggestions={this.state.suggestions}
+                >
                 </Autosuggest>
                 {this.state.loadingSuggestions && <span>Currently loading...</span>}
             </div>
