@@ -3,6 +3,7 @@ import Autosuggest, {SuggestionsFetchRequestedParams} from "react-autosuggest";
 import Opinion from "../interfaces/Opinion";
 import axios from "axios";
 import {debounce} from "debounce";
+import CasesService from "../services/CasesService";
 
 type CaseSearchProps = {}
 type CaseSearchState = {
@@ -10,8 +11,10 @@ type CaseSearchState = {
     suggestions: Opinion[];
     loadingSuggestions: boolean;
 }
+const MAX_SUGGESTIONS = 10
 
 class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
+
     constructor(props: CaseSearchProps) {
         super(props);
         this.state = {query: "", suggestions: [], loadingSuggestions: false}
@@ -27,16 +30,15 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
     }
 
     requestCounter = 0;
-    loadSuggestions = ({value}: SuggestionsFetchRequestedParams) => {
+    loadSuggestions = ({value: queryValue}: SuggestionsFetchRequestedParams) => {
         this.requestCounter++;
         const currentRequest = this.requestCounter;
         this.setState({loadingSuggestions: true})
-        axios.get("http://localhost:5000/cases/search", {params: {query: value, max_cases: 10}})
-            .then((response) => {
-                if (currentRequest === this.requestCounter) {
-                    this.setState({suggestions: response.data as Opinion[], loadingSuggestions: false})
-                }
-            })
+        CasesService.searchCases(queryValue, MAX_SUGGESTIONS).then(opinionResponse => {
+            if (currentRequest === this.requestCounter) {
+                this.setState({suggestions: opinionResponse, loadingSuggestions: false})
+            }
+        })
     }
     debouncedLoadSuggestions = debounce(this.loadSuggestions, 200)
 
