@@ -51,6 +51,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
 
     selectSuggestion: OnSuggestionSelected<Opinion> = (_, {suggestion}) => {
         this.props.onCaseSelected(suggestion);
+        this.setState({query: "", suggestions: []});
     }
 
     render() {

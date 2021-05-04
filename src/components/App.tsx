@@ -8,6 +8,7 @@ export type OnCaseSelected = (opinion: Opinion) => void
 type AppState = {
     selectedCases: Opinion[]
 }
+
 class App extends Component<{}, AppState> {
     constructor(props: {}) {
         super(props);
@@ -29,6 +30,11 @@ class App extends Component<{}, AppState> {
                 </div>
                 <div className="selected-cases">
                     <h2>Currently Selected Cases</h2>
+                    {this.state.selectedCases.map(opinion =>
+                        <div key={opinion.id}>
+                            {opinion.cluster.case_name}
+                        </div>
+                    )}
                 </div>
             </div>
         );
