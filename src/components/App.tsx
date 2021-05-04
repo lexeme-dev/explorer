@@ -5,8 +5,11 @@ import CaseSearch from "./CaseSearch";
 import Opinion from "../interfaces/Opinion";
 import CaseService from "../services/CaseService";
 import Spinner from "react-bootstrap/Spinner";
+import {PlusSquare, XSquare} from "react-bootstrap-icons";
 
-export type OnCaseSelected = (opinion: Opinion) => void
+type CaseAction = (opinion: Opinion) => void
+export type OnCaseAdded = CaseAction
+export type OnCaseRemoved = CaseAction
 
 type AppState = {
     selectedCases: Opinion[],
@@ -24,9 +27,15 @@ class App extends Component<{}, AppState> {
     }
 
 
-    onCaseSelected: OnCaseSelected = (opinion) => {
+    onCaseAdded: OnCaseAdded = (opinion) => {
         this.setState(prevState => {
             return {selectedCases: prevState.selectedCases.concat(opinion)}
+        }, () => this.loadRecommendations());
+    }
+
+    onCaseRemoved: OnCaseRemoved = (opinion) => {
+        this.setState(prevState => {
+            return {selectedCases: prevState.selectedCases.filter(op => op.id !== opinion.id)};
         }, () => this.loadRecommendations());
     }
 
@@ -41,14 +50,14 @@ class App extends Component<{}, AppState> {
             <div className="App">
                 <h3>Find Cases</h3>
                 <div className="search-box">
-                    <CaseSearch selectedCases={this.state.selectedCases} onCaseSelected={this.onCaseSelected}/>
+                    <CaseSearch selectedCases={this.state.selectedCases} onCaseSelected={this.onCaseAdded}/>
                 </div>
                 <br/>
                 <div className="selected-cases">
                     <h3>Currently Selected Cases</h3>
                     {this.state.selectedCases.map(opinion =>
                         <div key={opinion.id}>
-                            {opinion.cluster.case_name}
+                            {opinion.cluster.case_name} &nbsp; <XSquare onClick={() => this.onCaseRemoved(opinion)}/>
                         </div>
                     )}
                 </div>
@@ -59,7 +68,7 @@ class App extends Component<{}, AppState> {
                         <Spinner animation="border" role="status"/> :
                         this.state.recommendations.map(rec =>
                             <div key={rec.id}>
-                                {rec.cluster.case_name}
+                                {rec.cluster.case_name} &nbsp; <PlusSquare onClick={() => this.onCaseAdded(rec)}/>
                             </div>
                         )}
                 </div>

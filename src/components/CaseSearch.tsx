@@ -6,14 +6,14 @@ import Autosuggest, {
 import Opinion from "../interfaces/Opinion";
 import {debounce} from "debounce";
 import CaseService from "../services/CaseService";
-import {OnCaseSelected} from "./App";
+import {OnCaseAdded} from "./App";
 import AutosuggestTheme from "./AutosuggestTheme";
 import Spinner from "react-bootstrap/Spinner";
 
 
 type CaseSearchProps = {
     selectedCases: Opinion[]
-    onCaseSelected: OnCaseSelected
+    onCaseSelected: OnCaseAdded
 }
 type CaseSearchState = {
     query: string;
