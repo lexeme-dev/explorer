@@ -18,7 +18,7 @@ type CaseSearchProps = {
 type CaseSearchState = {
     query: string;
     suggestions: Opinion[];
-    loadingSuggestions: boolean;
+    suggestionsLoading: boolean;
 }
 const MAX_SUGGESTIONS = 10
 
@@ -27,7 +27,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
 
     constructor(props: CaseSearchProps) {
         super(props);
-        this.state = {query: "", suggestions: [], loadingSuggestions: false};
+        this.state = {query: "", suggestions: [], suggestionsLoading: false};
         this.caseService = new CaseService();
     }
 
@@ -44,13 +44,13 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
     loadSuggestions: SuggestionsFetchRequested = ({value: queryValue}) => {
         this.requestCounter++;
         const currentRequest = this.requestCounter;
-        this.setState({loadingSuggestions: true})
+        this.setState({suggestionsLoading: true})
         this.caseService.searchCases(queryValue, MAX_SUGGESTIONS).then(opinionResponse => {
             if (currentRequest === this.requestCounter) {
                 // This filter should eventually be replaced with including the already selected cases in the query.
                 const unselectedResults = opinionResponse.filter(op =>
                     !this.props.selectedCases.some(selectedOp => selectedOp.id === op.id));
-                this.setState({suggestions: unselectedResults, loadingSuggestions: false})
+                this.setState({suggestions: unselectedResults, suggestionsLoading: false})
             }
         })
     }
@@ -80,8 +80,8 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                     theme={AutosuggestTheme}
                     highlightFirstSuggestion={true}
                 >
-                </Autosuggest>
-                {this.state.loadingSuggestions && <Spinner animation="border" role="status" size="sm"/>}
+                </Autosuggest>&nbsp;
+                {this.state.suggestionsLoading && <Spinner animation="border" role="status" size="sm"/>}
             </div>
         );
     }

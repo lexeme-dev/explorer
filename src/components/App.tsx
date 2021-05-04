@@ -4,20 +4,22 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import CaseSearch from "./CaseSearch";
 import Opinion from "../interfaces/Opinion";
 import CaseService from "../services/CaseService";
+import Spinner from "react-bootstrap/Spinner";
 
 export type OnCaseSelected = (opinion: Opinion) => void
 
 type AppState = {
     selectedCases: Opinion[],
     recommendations: Opinion[],
+    recommendationsLoading: boolean;
 }
 
 class App extends Component<{}, AppState> {
-    caseService: CaseService
+    caseService: CaseService;
 
     constructor(props: {}) {
         super(props);
-        this.state = {selectedCases: [], recommendations: []};
+        this.state = {selectedCases: [], recommendations: [], recommendationsLoading: false};
         this.caseService = new CaseService()
     }
 
@@ -29,8 +31,9 @@ class App extends Component<{}, AppState> {
     }
 
     loadRecommendations = () => {
+        this.setState({recommendationsLoading: true});
         this.caseService.getSimilarCases(this.state.selectedCases, 5)
-            .then(recommendations => this.setState({recommendations}))
+            .then(recommendations => this.setState({recommendations, recommendationsLoading: false}));
     }
 
     render() {
@@ -40,7 +43,7 @@ class App extends Component<{}, AppState> {
                 <div className="search-box">
                     <CaseSearch selectedCases={this.state.selectedCases} onCaseSelected={this.onCaseSelected}/>
                 </div>
-                <br />
+                <br/>
                 <div className="selected-cases">
                     <h3>Currently Selected Cases</h3>
                     {this.state.selectedCases.map(opinion =>
@@ -49,13 +52,16 @@ class App extends Component<{}, AppState> {
                         </div>
                     )}
                 </div>
+                <br/>
                 <div className="case-recommendations">
                     <h3>Recommendations</h3>
-                    {this.state.recommendations.map(rec =>
-                        <div key={rec.id}>
-                            {rec.cluster.case_name}
-                        </div>
-                    )}
+                    {this.state.recommendationsLoading ?
+                        <Spinner animation="border" role="status"/> :
+                        this.state.recommendations.map(rec =>
+                            <div key={rec.id}>
+                                {rec.cluster.case_name}
+                            </div>
+                        )}
                 </div>
             </div>
         );
