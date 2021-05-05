@@ -60,8 +60,8 @@ class App extends Component<{}, AppState> {
                     {this.state.selectedCases.map(opinion =>
                         <div key={opinion.id}>
                             {fullCaseName(opinion)} &nbsp;
-                            <Button variant="link" size="sm" onClick={() => this.onCaseRemoved(opinion)}>
-                                <XSquare/>
+                            <Button style={{color: "red"}} variant="link" size="sm" onClick={() => this.onCaseRemoved(opinion)}>
+                                <XSquare className="align-text-top"/>
                             </Button>
                         </div>
                     )}
