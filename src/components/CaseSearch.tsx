@@ -24,10 +24,11 @@ const MAX_SUGGESTIONS = 10;
 class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
     caseService: CaseService;
 
-    requestCounter = 0;
+    requestCounter: number;
 
     constructor(props: CaseSearchProps) {
         super(props);
+        this.requestCounter = 0;
         this.state = { query: '', suggestions: [], suggestionsLoading: false };
         this.caseService = new CaseService();
     }
