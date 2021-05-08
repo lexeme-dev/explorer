@@ -7,11 +7,11 @@ export default interface Opinion {
     opinion_uri: string;
 }
 
-export const fullCaseName = ({cluster}: Opinion): string => {
+export const fullCaseName = ({ cluster }: Opinion): string => {
     let opinionDisplayText = cluster.case_name;
     if (cluster.reporter != null) {
         opinionDisplayText += `, ${cluster.reporter}`;
     }
-    opinionDisplayText += ` (${cluster.year})`
+    opinionDisplayText += ` (${cluster.year})`;
     return opinionDisplayText;
-}
+};
