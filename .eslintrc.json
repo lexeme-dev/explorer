@@ -24,8 +24,7 @@
             "node": {
                 "extensions": [".ts", ".tsx"]
             }
-        },
-        "indent": ["warning", 4]
+        }
     },
     "rules": {
         "react/jsx-filename-extension": [1, { "extensions": [".tsx"] }],
@@ -39,6 +38,9 @@
         "max-len": ["warn", {
             "code": 120
         }],
+        "indent": ["warn", 4],
+        "react/jsx-indent": ["warn", 4],
+        "react/jsx-indent-props": ["warn", 4],
         "no-undef": "off" // Superseded by TS type-checking
     }
 }
