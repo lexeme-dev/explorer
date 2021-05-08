@@ -1,4 +1,4 @@
-export default interface Cluster {
+interface Cluster {
     id: number;
     case_name: string;
     resource_id: number;
@@ -8,3 +8,5 @@ export default interface Cluster {
     time: number;
     cluster_uri: string;
 }
+
+export default Cluster;
