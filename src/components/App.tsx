@@ -27,7 +27,6 @@ class App extends Component<{}, AppState> {
         this.caseService = new CaseService()
     }
 
-
     onCaseAdded: OnCaseAdded = (opinion) => {
         this.setState(prevState => {
             return {selectedCases: prevState.selectedCases.concat(opinion)}
@@ -50,8 +49,8 @@ class App extends Component<{}, AppState> {
     render() {
         return (
             <div className="App">
-                <h3>Find Cases</h3>
                 <div className="search-box">
+                    <h3>Find Cases</h3>
                     <CaseSearch selectedCases={this.state.selectedCases} onCaseSelected={this.onCaseAdded}/>
                 </div>
                 <br/>
