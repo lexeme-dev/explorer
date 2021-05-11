@@ -38,3 +38,17 @@
         transform: rotate(360deg);
     }
 }
+
+.dropzone {
+    width: 400px;
+    margin: auto;
+    padding: 20px;
+    border-width: 2px;
+    border-radius: 2px;
+    border-color: #eeeeee;
+    border-style: dashed;
+    background-color: #dedede;
+    color: #8d8d8d;
+    outline: none;
+    transition: border .24s ease-in-out;
+}
