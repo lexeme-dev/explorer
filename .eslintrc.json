@@ -17,7 +17,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "only-warn"
     ],
     "settings": {
         "import/resolver": {
@@ -41,6 +42,7 @@
         "indent": ["warn", 4],
         "react/jsx-indent": ["warn", 4],
         "react/jsx-indent-props": ["warn", 4],
+        "react/jsx-props-no-spreading": "off",
         "no-undef": "off" // Superseded by TS type-checking
     }
 }

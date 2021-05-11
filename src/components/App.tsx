@@ -7,10 +7,10 @@ import { Button } from 'react-bootstrap';
 import CaseSearch from './CaseSearch';
 import Opinion, { fullCaseName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
+import PdfUpload from './PdfUpload';
 
-type CaseAction = (opinion: Opinion) => void;
-export type OnCaseAdded = CaseAction;
-export type OnCaseRemoved = CaseAction;
+export type OnCasesAdded = (opinion: Opinion | Opinion[]) => void;
+export type OnCaseRemoved = (opinion: Opinion) => void;
 
 type AppState = {
     selectedCases: Opinion[];
@@ -31,7 +31,7 @@ class App extends Component<{}, AppState> {
         this.caseService = new CaseService();
     }
 
-    onCaseAdded: OnCaseAdded = (opinion) => {
+    onCaseAdded: OnCasesAdded = (opinion) => {
         this.setState(
             (prevState) => ({
                 selectedCases: prevState.selectedCases.concat(opinion),
@@ -51,6 +51,14 @@ class App extends Component<{}, AppState> {
         );
     };
 
+    onCasesCleared = () => {
+        this.setState({
+            selectedCases: [],
+            recommendations: [],
+            recommendationsLoading: false,
+        });
+    };
+
     loadRecommendations = () => {
         this.setState({ recommendationsLoading: true });
         const { selectedCases } = this.state;
@@ -67,7 +75,11 @@ class App extends Component<{}, AppState> {
     };
 
     render() {
-        const { selectedCases, recommendations, recommendationsLoading } = this.state;
+        const {
+            selectedCases,
+            recommendations,
+            recommendationsLoading,
+        } = this.state;
         return (
             <div className="App">
                 <div className="search-box">
@@ -78,8 +90,17 @@ class App extends Component<{}, AppState> {
                     />
                 </div>
                 <br />
+                <div className="pdf-upload-box">
+                    <PdfUpload onCasesExtracted={this.onCaseAdded} />
+                </div>
+                <br />
                 <div className="selected-cases">
-                    <h3>Currently Selected Cases</h3>
+                    <h3>
+                        Currently Selected Cases
+                        <Button onClick={this.onCasesCleared} variant="link">
+                            <XSquare style={{ color: 'red' }} className="align-text-top" />
+                        </Button>
+                    </h3>
                     {selectedCases.map((opinion) => (
                         <div key={opinion.id}>
                             {fullCaseName(opinion)}
