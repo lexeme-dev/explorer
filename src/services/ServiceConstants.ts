@@ -6,3 +6,5 @@ export const API_URL = process.env.NODE_ENV === 'development'
 export const CASES_ROUTE = '/cases';
 export const CASES_SEARCH_ROUTE = `${CASES_ROUTE}/search`;
 export const CASES_SIMILAR_ROUTE = `${CASES_ROUTE}/similar`;
+
+export const PDF_UPLOAD_ROUTE = '/pdf/upload';
