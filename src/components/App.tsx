@@ -7,10 +7,10 @@ import { Button } from 'react-bootstrap';
 import CaseSearch from './CaseSearch';
 import Opinion, { fullCaseName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
+import PdfUpload from './PdfUpload';
 
-type CaseAction = (opinion: Opinion) => void;
-export type OnCaseAdded = CaseAction;
-export type OnCaseRemoved = CaseAction;
+export type OnCasesAdded = (opinion: Opinion | Opinion[]) => void;
+export type OnCaseRemoved = (opinion: Opinion) => void;
 
 type AppState = {
     selectedCases: Opinion[];
@@ -31,7 +31,7 @@ class App extends Component<{}, AppState> {
         this.caseService = new CaseService();
     }
 
-    onCaseAdded: OnCaseAdded = (opinion) => {
+    onCaseAdded: OnCasesAdded = (opinion) => {
         this.setState(
             (prevState) => ({
                 selectedCases: prevState.selectedCases.concat(opinion),
@@ -76,6 +76,10 @@ class App extends Component<{}, AppState> {
                         selectedCases={selectedCases}
                         onCaseSelected={this.onCaseAdded}
                     />
+                </div>
+                <br />
+                <div className="pdf-upload-box">
+                    <PdfUpload onCasesExtracted={this.onCaseAdded} />
                 </div>
                 <br />
                 <div className="selected-cases">
