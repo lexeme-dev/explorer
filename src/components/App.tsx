@@ -51,6 +51,14 @@ class App extends Component<{}, AppState> {
         );
     };
 
+    onCasesCleared = () => {
+        this.setState({
+            selectedCases: [],
+            recommendations: [],
+            recommendationsLoading: false
+        });
+    };
+
     loadRecommendations = () => {
         this.setState({ recommendationsLoading: true });
         const { selectedCases } = this.state;
@@ -67,7 +75,11 @@ class App extends Component<{}, AppState> {
     };
 
     render() {
-        const { selectedCases, recommendations, recommendationsLoading } = this.state;
+        const {
+            selectedCases,
+            recommendations,
+            recommendationsLoading
+        } = this.state;
         return (
             <div className="App">
                 <div className="search-box">
@@ -77,13 +89,18 @@ class App extends Component<{}, AppState> {
                         onCaseSelected={this.onCaseAdded}
                     />
                 </div>
-                <br />
+                <br/>
                 <div className="pdf-upload-box">
-                    <PdfUpload onCasesExtracted={this.onCaseAdded} />
+                    <PdfUpload onCasesExtracted={this.onCaseAdded}/>
                 </div>
-                <br />
+                <br/>
                 <div className="selected-cases">
-                    <h3>Currently Selected Cases</h3>
+                    <h3>
+                        Currently Selected Cases
+                        <Button onClick={this.onCasesCleared} variant="link">
+                            <XSquare style={{ color: 'red' }} className="align-text-top"/>
+                        </Button>
+                    </h3>
                     {selectedCases.map((opinion) => (
                         <div key={opinion.id}>
                             {fullCaseName(opinion)}
@@ -95,16 +112,16 @@ class App extends Component<{}, AppState> {
                                 size="sm"
                                 onClick={() => this.onCaseRemoved(opinion)}
                             >
-                                <XSquare className="align-text-top" />
+                                <XSquare className="align-text-top"/>
                             </Button>
                         </div>
                     ))}
                 </div>
-                <br />
+                <br/>
                 <div className="case-recommendations">
                     <h3>Recommendations</h3>
                     {recommendationsLoading ? (
-                        <Spinner animation="border" role="status" />
+                        <Spinner animation="border" role="status"/>
                     ) : (
                         recommendations.map((rec) => (
                             <div key={rec.id}>
@@ -114,7 +131,7 @@ class App extends Component<{}, AppState> {
                                     size="sm"
                                     onClick={() => this.onCaseAdded(rec)}
                                 >
-                                    <PlusSquare className="align-text-top" />
+                                    <PlusSquare className="align-text-top"/>
                                 </Button>
                             </div>
                         ))
