@@ -17,7 +17,8 @@
     },
     "plugins": [
         "react",
-        "@typescript-eslint"
+        "@typescript-eslint",
+        "only-warn"
     ],
     "settings": {
         "import/resolver": {
