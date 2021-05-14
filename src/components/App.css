@@ -52,3 +52,9 @@
     outline: none;
     transition: border .24s ease-in-out;
 }
+
+.selected-case-list {
+    width: 500px;
+    margin: auto;
+    text-align: start;
+}

@@ -89,39 +89,44 @@ class App extends Component<{}, AppState> {
                         onCaseSelected={this.onCaseAdded}
                     />
                 </div>
-                <br />
+                <br/>
                 <div className="pdf-upload-box">
-                    <PdfUpload onCasesExtracted={this.onCaseAdded} />
+                    <PdfUpload onCasesExtracted={this.onCaseAdded}/>
                 </div>
-                <br />
+                <br/>
                 <div className="selected-cases">
                     <h3>
                         Currently Selected Cases
                         <Button onClick={this.onCasesCleared} variant="link">
-                            <XSquare style={{ color: 'red' }} className="align-text-top" />
+                            <XSquare style={{ color: 'red' }} className="align-text-top"/>
                         </Button>
                     </h3>
-                    {selectedCases.map((opinion) => (
-                        <div key={opinion.id}>
-                            {fullCaseName(opinion)}
-                            {' '}
-                            &nbsp;
-                            <Button
-                                style={{ color: 'red' }}
-                                variant="link"
-                                size="sm"
-                                onClick={() => this.onCaseRemoved(opinion)}
-                            >
-                                <XSquare className="align-text-top" />
-                            </Button>
-                        </div>
-                    ))}
+                    <ul className="selected-case-list">
+                        {selectedCases.map((opinion) => (
+                            <li key={opinion.id}>
+                                {fullCaseName(opinion)}
+                                {' '}
+                                {/*&nbsp;*/}
+                                {/*<Button*/}
+                                {/*    style={{ color: 'red' }}*/}
+                                {/*    variant="link"*/}
+                                {/*    size="sm"*/}
+                                {/*    onClick={() => this.onCaseRemoved(opinion)}*/}
+                                {/*>*/}
+                                {/*    <XSquare className="align-text-top"/>*/}
+                                {/*</Button>*/}
+                                <ul>
+                                    {opinion.parentheticals?.map(paren => <li>{paren}</li>)}
+                                </ul>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
-                <br />
+                <br/>
                 <div className="case-recommendations">
                     <h3>Recommendations</h3>
                     {recommendationsLoading ? (
-                        <Spinner animation="border" role="status" />
+                        <Spinner animation="border" role="status"/>
                     ) : (
                         recommendations.map((rec) => (
                             <div key={rec.id}>
@@ -131,7 +136,7 @@ class App extends Component<{}, AppState> {
                                     size="sm"
                                     onClick={() => this.onCaseAdded(rec)}
                                 >
-                                    <PlusSquare className="align-text-top" />
+                                    <PlusSquare className="align-text-top"/>
                                 </Button>
                             </div>
                         ))

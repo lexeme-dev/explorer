@@ -5,6 +5,7 @@ interface Opinion {
     cluster: Cluster;
     resource_id: number;
     opinion_uri: string;
+    parentheticals?: string[];
 }
 
 export const fullCaseName = ({ cluster }: Opinion): string => {
