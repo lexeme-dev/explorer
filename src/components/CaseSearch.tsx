@@ -37,7 +37,12 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
         this.caseService = new CaseService();
     }
 
-    renderSuggestion = (opinion: Opinion): JSX.Element => <span>{fullCaseName(opinion)}</span>;
+    renderSuggestion = (opinion: OpinionSuggestion): JSX.Element => (
+        <span
+            className="case-suggestion"
+            dangerouslySetInnerHTML={{ __html: opinion.headline }}
+        />
+    )
 
     loadSuggestions: SuggestionsFetchRequested = ({ value: queryValue }) => {
         const { selectedCases } = this.props;
