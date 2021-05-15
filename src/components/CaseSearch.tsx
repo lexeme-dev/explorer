@@ -74,12 +74,12 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
     };
 
     render() {
-        const inputProps: Autosuggest.InputProps<Opinion> = {
         const {
             suggestions,
             suggestionsLoading,
             query,
         } = this.state;
+        const inputProps: Autosuggest.InputProps<OpinionSuggestion> = {
             placeholder: 'Search for a case...',
             onChange: (_, { newValue }) => this.setState({ query: newValue }),
             value: query,

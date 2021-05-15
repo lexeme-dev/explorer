@@ -8,6 +8,10 @@ interface Opinion {
     parentheticals?: string[];
 }
 
+export interface OpinionSuggestion extends Opinion {
+    headline: string;
+}
+
 export const fullCaseName = ({ cluster }: Opinion): string => {
     let opinionDisplayText = cluster.case_name;
     if (cluster.reporter != null) {
