@@ -1,12 +1,12 @@
-import Opinion from '../interfaces/Opinion';
+import Opinion, { OpinionSuggestion } from '../interfaces/Opinion';
 import { CASES_SEARCH_ROUTE, CASES_SIMILAR_ROUTE } from './ServiceConstants';
 import BaseService from './BaseService';
 
 class CaseService extends BaseService {
-    searchCases(query: string, max_cases: number): Promise<Opinion[]> {
+    searchCases(query: string, max_cases: number): Promise<OpinionSuggestion[]> {
         return this.axios
             .get(CASES_SEARCH_ROUTE, { params: { query, max_cases } })
-            .then((r) => r.data as Opinion[]);
+            .then((r) => r.data as OpinionSuggestion[]);
     }
 
     getSimilarCases(

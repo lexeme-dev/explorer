@@ -5,7 +5,7 @@ import Autosuggest, {
 } from 'react-autosuggest';
 import { debounce } from 'debounce';
 import Spinner from 'react-bootstrap/Spinner';
-import Opinion, { fullCaseName } from '../interfaces/Opinion';
+import Opinion, { OpinionSuggestion } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 import { OnCasesAdded } from './App';
 import AutosuggestTheme from './AutosuggestTheme';
@@ -16,7 +16,7 @@ type CaseSearchProps = {
 };
 type CaseSearchState = {
     query: string;
-    suggestions: Opinion[];
+    suggestions: OpinionSuggestion[];
     suggestionsLoading: boolean;
 };
 const MAX_SUGGESTIONS = 10;
@@ -29,11 +29,20 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
     constructor(props: CaseSearchProps) {
         super(props);
         this.requestCounter = 0;
-        this.state = { query: '', suggestions: [], suggestionsLoading: false };
+        this.state = {
+            query: '',
+            suggestions: [],
+            suggestionsLoading: false,
+        };
         this.caseService = new CaseService();
     }
 
-    renderSuggestion = (opinion: Opinion): JSX.Element => <span>{fullCaseName(opinion)}</span>;
+    renderSuggestion = (opinion: OpinionSuggestion): JSX.Element => (
+        <span
+            className="case-suggestion"
+            dangerouslySetInnerHTML={{ __html: opinion.headline }}
+        />
+    )
 
     loadSuggestions: SuggestionsFetchRequested = ({ value: queryValue }) => {
         const { selectedCases } = this.props;
@@ -63,12 +72,19 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
     selectSuggestion: OnSuggestionSelected<Opinion> = (_, { suggestion }) => {
         const { onCaseSelected } = this.props;
         onCaseSelected(suggestion);
-        this.setState({ query: '', suggestions: [] });
+        this.setState({
+            query: '',
+            suggestions: [],
+        });
     };
 
     render() {
-        const { suggestions, suggestionsLoading, query } = this.state;
-        const inputProps: Autosuggest.InputProps<Opinion> = {
+        const {
+            suggestions,
+            suggestionsLoading,
+            query,
+        } = this.state;
+        const inputProps: Autosuggest.InputProps<OpinionSuggestion> = {
             placeholder: 'Search for a case...',
             onChange: (_, { newValue }) => this.setState({ query: newValue }),
             value: query,
