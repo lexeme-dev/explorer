@@ -4,10 +4,10 @@ import Spinner from 'react-bootstrap/Spinner';
 import { OnCasesAdded } from './App';
 import PdfService from '../services/PdfService';
 
-type PdfUploadProps = {
+export type PdfUploadProps = {
     onCasesExtracted: OnCasesAdded;
 }
-type PdfUploadState = {
+export type PdfUploadState = {
     invalidFileType: boolean;
     uploadingFile: boolean;
 }
