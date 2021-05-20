@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import './Header.css';
+import './colors.scss';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export type HeaderProps = {
 };
@@ -13,11 +15,9 @@ class Header extends Component<HeaderProps, HeaderState> {
      */
     render() {
         return (
-            <div className="header">
-                <div className="header-left">
-                    explorer
-                </div>
-            </div>
+			<nav className="navbar navbar-expand-lg navbar-light bg-primary">
+			  <a className="navbar-brand text-light" href="#">LN Explorer</a>
+			</nav>
         );
     }
 }

@@ -9,6 +9,7 @@ import Opinion, { fullCaseName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 import PdfUpload from './PdfUpload';
 import Header from './Header';
+import Sidebar from './Sidebar';
 
 export type OnCasesAdded = (opinion: Opinion | Opinion[]) => void;
 export type OnCaseRemoved = (opinion: Opinion) => void;
