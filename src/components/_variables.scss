@@ -3,6 +3,8 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 
+$sidebar-width: 350px;
+
 $base-font                : 'Crete Round';
 $font-family-base         : 'Crete Round';
 $heading-font             : $base-font;
@@ -34,6 +36,7 @@ $theme-colors: (
 
 // COLORS =====================================================
 $body-bg: #FFFBEC;
+$body-bg-darker: #F9F2D7;
 $body-color               : #363457;
 $text-color               : #222;
 $base-color               : #F2d5F8;

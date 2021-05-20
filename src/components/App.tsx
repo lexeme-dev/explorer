@@ -85,7 +85,7 @@ class App extends Component<{}, AppState> {
         return (
             <div className="App">
                 <Header />
-                <div id="bodyFrame" className="container-fluid">
+                <div id="bodyFrame" className="container-fluid p-0">
                     <div id="sidebar-wrapper">
                         <Sidebar />
                     </div>
