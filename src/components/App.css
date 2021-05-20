@@ -1,7 +1,7 @@
 .App {
     text-align: center;
     margin: 0 auto;
-    padding-top: 150px;
+    padding-top: 70px;
 }
 
 .App-logo {
@@ -51,4 +51,11 @@
     color: #8d8d8d;
     outline: none;
     transition: border .24s ease-in-out;
+}
+
+#bodyFrame {
+    padding-top: 50px;
+    padding: 0px;
+    top: 0px;
+    left: 0px;
 }
