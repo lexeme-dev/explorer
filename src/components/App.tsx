@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { PlusSquare, XSquare } from 'react-bootstrap-icons';
@@ -85,67 +85,65 @@ class App extends Component<{}, AppState> {
         return (
             <div className="App">
                 <Header />
-                <div id="bodyFrame" class="container-fluid">
-                    <div class="row align-items-start">
-                        <div class="col-3">
-                            <Sidebar />
+                <div id="bodyFrame" className="container-fluid">
+                    <div id="sidebar-wrapper">
+                        <Sidebar />
+                    </div>
+                    <div id="page-content-wrapper">
+                        <div className="search-box">
+                            <h3>Find Cases</h3>
+                            <CaseSearch
+                                selectedCases={selectedCases}
+                                onCaseSelected={this.onCaseAdded}
+                            />
                         </div>
-                        <div class="col-8">
-                            <div className="search-box">
-                                <h3>Find Cases</h3>
-                                <CaseSearch
-                                    selectedCases={selectedCases}
-                                    onCaseSelected={this.onCaseAdded}
-                                />
-                            </div>
-                            <br />
-                            <div className="pdf-upload-box">
-                                <PdfUpload onCasesExtracted={this.onCaseAdded} />
-                            </div>
-                            <br />
-                            <div className="selected-cases">
-                                <h3>
-                                    Currently Selected Cases
-                                    <Button onClick={this.onCasesCleared} variant="link">
-                                        <XSquare style={{ color: 'red' }} className="align-text-top" />
+                        <br />
+                        <div className="pdf-upload-box">
+                            <PdfUpload onCasesExtracted={this.onCaseAdded} />
+                        </div>
+                        <br />
+                        <div className="selected-cases">
+                            <h3>
+                                Currently Selected Cases
+                                <Button onClick={this.onCasesCleared} variant="link">
+                                    <XSquare style={{ color: 'red' }} className="align-text-top" />
+                                </Button>
+                            </h3>
+                            {selectedCases.map((opinion) => (
+                                <div key={opinion.id}>
+                                    {fullCaseName(opinion)}
+                                    {' '}
+                                    &nbsp;
+                                    <Button
+                                        style={{ color: 'red' }}
+                                        variant="link"
+                                        size="sm"
+                                        onClick={() => this.onCaseRemoved(opinion)}
+                                    >
+                                        <XSquare className="align-text-top" />
                                     </Button>
-                                </h3>
-                                {selectedCases.map((opinion) => (
-                                    <div key={opinion.id}>
-                                        {fullCaseName(opinion)}
-                                        {' '}
-                                        &nbsp;
+                                </div>
+                            ))}
+                        </div>
+                        <br />
+                        <div className="case-recommendations">
+                            <h3>Recommendations</h3>
+                            {recommendationsLoading ? (
+                                <Spinner animation="border" role="status" />
+                            ) : (
+                                recommendations.map((rec) => (
+                                    <div key={rec.id}>
+                                        {fullCaseName(rec)}
                                         <Button
-                                            style={{ color: 'red' }}
                                             variant="link"
                                             size="sm"
-                                            onClick={() => this.onCaseRemoved(opinion)}
+                                            onClick={() => this.onCaseAdded(rec)}
                                         >
-                                            <XSquare className="align-text-top" />
+                                            <PlusSquare className="align-text-top" />
                                         </Button>
                                     </div>
-                                ))}
-                            </div>
-                            <br />
-                            <div className="case-recommendations">
-                                <h3>Recommendations</h3>
-                                {recommendationsLoading ? (
-                                    <Spinner animation="border" role="status" />
-                                ) : (
-                                    recommendations.map((rec) => (
-                                        <div key={rec.id}>
-                                            {fullCaseName(rec)}
-                                            <Button
-                                                variant="link"
-                                                size="sm"
-                                                onClick={() => this.onCaseAdded(rec)}
-                                            >
-                                                <PlusSquare className="align-text-top" />
-                                            </Button>
-                                        </div>
-                                    ))
-                                )}
-                            </div>
+                                ))
+                            )}
                         </div>
                     </div>
                 </div>

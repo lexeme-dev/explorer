@@ -1,3 +1,5 @@
+@import "main";
+
 .App {
     text-align: center;
     margin: 0 auto;
@@ -53,9 +55,10 @@
     transition: border .24s ease-in-out;
 }
 
-#bodyFrame {
-    padding-top: 50px;
-    padding: 0px;
-    top: 0px;
-    left: 0px;
+#page-content-wrapper {
+    padding: 15px;
+    width: 100%;
+    position: absolute;
+    border: 5px solid green;
+    z-index: -1;
 }

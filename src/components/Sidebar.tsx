@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './Sidebar.css';
+import './Sidebar.scss';
 
 export type SidebarProps = {
 };

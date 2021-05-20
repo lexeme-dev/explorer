@@ -1,4 +1,5 @@
-import "../src/components/App.css";
+import '!style-loader!css-loader!sass-loader!../src/globalStyles/global.scss';
+import "../src/components/App.scss";
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
