@@ -1,0 +1,18 @@
+@import url('./fonts.css');
+
+
+.header {
+    overflow: hidden;
+    font-family: Crete Round;
+    font-style: normal;
+    font-size: 64px;
+    line-height: 82px;
+    color: #FFFBEC;
+    background-color: #6F9AD4;
+}
+
+.header-left {
+    float: left;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
