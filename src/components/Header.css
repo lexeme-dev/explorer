@@ -6,14 +6,17 @@
     overflow: hidden;
     font-family: var(--slab);
     font-style: normal;
-    font-size: 64px;
-    line-height: 82px;
+    font-size: 40px;
+    line-height: 50px;
     color: var(--main-cream);
     background-color: var(--main-blue);
+    position: fixed;
+    top: 0px;
+    width: 100%;
 }
 
 .header-left {
     float: left;
-    padding-left: 10px;
+    padding-left: 50px;
     padding-bottom: 5px;
 }

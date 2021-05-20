@@ -8,6 +8,7 @@ import CaseSearch from './CaseSearch';
 import Opinion, { fullCaseName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 import PdfUpload from './PdfUpload';
+import Header from './Header';
 
 export type OnCasesAdded = (opinion: Opinion | Opinion[]) => void;
 export type OnCaseRemoved = (opinion: Opinion) => void;
@@ -82,6 +83,7 @@ class App extends Component<{}, AppState> {
         } = this.state;
         return (
             <div className="App">
+                <Header />
                 <div className="search-box">
                     <h3>Find Cases</h3>
                     <CaseSearch
