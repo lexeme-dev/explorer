@@ -1,13 +1,13 @@
 // TYPOGRAPHY ================================================
-@import url('https://fonts.googleapis.com/css2?family=Crete+Round&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 
 $sidebar-width: 350px;
-$nav-height: 50px;
 
-$base-font                : 'Crete Round';
-$font-family-base         : 'Crete Round';
+$base-font         : 'Bitter';
+$font-family-base         : $base-font;
+$font-family-serif         : $base-font;
 $heading-font             : $base-font;
 $caption-font             : $base-font;
 $code-font                : 'source-code-pro', monospace;
@@ -37,6 +37,7 @@ $theme-colors: (
 
 // COLORS =====================================================
 $body-bg: #FFFBEC;
+$bg-mark: #C4E9FF;
 $body-bg-darker: #F9F2D7;
 $body-color               : #363457;
 $text-color               : #222;

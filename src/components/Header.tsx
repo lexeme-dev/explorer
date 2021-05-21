@@ -16,7 +16,7 @@ class Header extends Component<HeaderProps, HeaderState> {
     render() {
         return (
 			<nav id="explorerNav" className="navbar navbar-inverse py-0 bg-primary">
-			  <a className="h1 text-light" href="#">explorer</a>
+			  <a className="h1 text-light font-weight-bolder" href="#">explorer</a>
 			</nav>
         );
     }
