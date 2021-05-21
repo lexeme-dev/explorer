@@ -20,16 +20,9 @@
     padding-left: $sidebar-width;
 }
 
-.bookmarks-sidebar li {
-    text-indent: 20px;
-    line-height: 40px;
-}
-
-.bookmarks-sidebar li a {
-    display: block;
-    text-decoration: none;
-}
-
-.bookmarks-sidebar {
+.bookmarks-header {
     align: left;
+}
+
+.bookmarks-list {
 }

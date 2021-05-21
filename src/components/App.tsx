@@ -87,7 +87,7 @@ class App extends Component<{}, AppState> {
                 <Header />
                 <div id="bodyFrame" className="container-fluid p-0">
                     <div id="sidebar-wrapper">
-                        <Sidebar />
+                        <Sidebar opinions={selectedCases} onCaseRemoved={this.onCaseRemoved}/>
                     </div>
                     <div id="page-content-wrapper">
                         <div className="search-box">
