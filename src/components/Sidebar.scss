@@ -6,7 +6,8 @@
     width: $sidebar-width;
     height: 100%;
     overflow-y: hidden;
-    border: 2px solid red;
+    border-left: 1px solid gray;
+    z-index: -1;
     background: $body-bg-darker;
 }
 
