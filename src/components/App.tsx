@@ -90,44 +90,16 @@ class App extends Component<{}, AppState> {
                         <Sidebar opinions={selectedCases} onCaseRemoved={this.onCaseRemoved}/>
                     </div>
                     <div id="page-content-wrapper">
-                        <div className="search-box">
-                            <h3>Find Cases</h3>
+                        <div className="search-box p-2">
                             <CaseSearch
                                 selectedCases={selectedCases}
                                 onCaseSelected={this.onCaseAdded}
                             />
                         </div>
                         <br />
-                        <div className="pdf-upload-box">
-                            <PdfUpload onCasesExtracted={this.onCaseAdded} />
-                        </div>
                         <br />
-                        <div className="selected-cases">
-                            <h3>
-                                Currently Selected Cases
-                                <Button onClick={this.onCasesCleared} variant="link">
-                                    <XSquare style={{ color: 'red' }} className="align-text-top" />
-                                </Button>
-                            </h3>
-                            {selectedCases.map((opinion) => (
-                                <div key={opinion.id}>
-                                    {fullCaseName(opinion)}
-                                    {' '}
-                                    &nbsp;
-                                    <Button
-                                        style={{ color: 'red' }}
-                                        variant="link"
-                                        size="sm"
-                                        onClick={() => this.onCaseRemoved(opinion)}
-                                    >
-                                        <XSquare className="align-text-top" />
-                                    </Button>
-                                </div>
-                            ))}
-                        </div>
                         <br />
                         <div className="case-recommendations">
-                            <h3>Recommendations</h3>
                             {recommendationsLoading ? (
                                 <Spinner animation="border" role="status" />
                             ) : (
