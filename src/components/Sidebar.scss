@@ -24,5 +24,9 @@
     align: left;
 }
 
-.bookmarks-list {
+.bookmark-item {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    width: calc($sidebar-width - 30);
 }
