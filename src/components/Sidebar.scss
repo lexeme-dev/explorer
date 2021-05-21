@@ -9,6 +9,7 @@
     border-left: 1px solid gray;
     z-index: -1;
     background: $body-bg-darker;
+    padding: 10px;
 }
 
 #wrapper.menuDisplayed #sidebar-wrapper {
@@ -19,12 +20,16 @@
     padding-left: $sidebar-width;
 }
 
-.sidebar li {
+.bookmarks-sidebar li {
     text-indent: 20px;
     line-height: 40px;
 }
 
-.sidebar li a {
+.bookmarks-sidebar li a {
     display: block;
     text-decoration: none;
+}
+
+.bookmarks-sidebar {
+    align: left;
 }

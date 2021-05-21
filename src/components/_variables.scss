@@ -40,8 +40,10 @@ $body-bg: #FFFBEC;
 $bg-mark: #C4E9FF;
 $body-bg-darker: #F9F2D7;
 $body-color               : #363457;
-$text-color               : #222;
-$base-color               : #F2d5F8;
+$text-color               : $body-color;
+
+$text-grey-color: #555273;
+$base-color               : #000000;
 
 // MEDIA QUERIES ==============================================
 $micro                    : "only screen and (min-width: 30em)";
