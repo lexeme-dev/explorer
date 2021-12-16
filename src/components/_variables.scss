@@ -1,0 +1,57 @@
+// TYPOGRAPHY ================================================
+@import url('https://fonts.googleapis.com/css2?family=Bitter&display=swap');
+@import "bootstrap/scss/functions";
+@import "bootstrap/scss/variables";
+
+$sidebar-width: 350px;
+
+$base-font         : 'Bitter';
+$font-family-base         : $base-font;
+$font-family-serif         : $base-font;
+$heading-font             : $base-font;
+$caption-font             : $base-font;
+$code-font                : 'source-code-pro', monospace;
+$alt-font                 : 'volkhov', serif;
+
+$doc-font-size            : 16;
+$doc-line-height          : 24;
+
+$border-radius            : 3px;
+
+
+// set-up the body font-size / line-height
+// body {
+  // margin-top: 0px + $doc-line-height;
+  // font-size: 0px + $doc-font-size;
+// }
+//
+
+$theme-colors: (
+                primary: #0f00B8,
+                secondary: #C4E9FF,
+                success: #1e6111,
+                info:  #64c3d2,
+                warning: #f5e74a,
+                danger: #820410
+                );
+
+// COLORS =====================================================
+$body-bg: #FBFBFB;
+$body-gold: #F0CE7F;
+$body-lightblue: #78BCDE;
+$bg-mark: #C4E9FF;
+$body-bg-darker: #F4F4F4;
+$body-color               : #363457;
+$text-color               : $body-color;
+
+$text-grey-color: #555273;
+$base-color               : #FbFbFb;
+
+// MEDIA QUERIES ==============================================
+$micro                    : "only screen and (min-width: 30em)";
+$small                    : "only screen and (min-width: 37.5em)";
+$medium                   : "only screen and (min-width: 48em)";
+$large                    : "only screen and (min-width: 62em)";
+$x-large                  : "only screen and (min-width: 86.375em)";
+
+@import "bootstrap/scss/bootstrap";
