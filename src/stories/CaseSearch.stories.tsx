@@ -16,5 +16,5 @@ const Template: ComponentStory<typeof CaseSearch> = (args) => <CaseSearch {...ar
 export const Default = Template.bind({});
 Default.args = {
   selectedCases: [],
-  onCaseSelected: action('clicked'),
+  onCaseSelected: action('caseSelected'),
 };
