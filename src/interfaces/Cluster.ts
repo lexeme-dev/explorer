@@ -7,6 +7,8 @@ interface Cluster {
     citation_count: number;
     time: number;
     cluster_uri: string;
+    court: string;
+    docket_uri: string;
 }
 
 export default Cluster;
