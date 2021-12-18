@@ -97,7 +97,7 @@
   flex-grow: 4;
   flex-basis: 50%;
 }
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     .sidebar {
         flex-basis: 100%;
         min-height: 200px;
