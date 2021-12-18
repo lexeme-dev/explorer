@@ -99,9 +99,6 @@ class App extends Component<{}, AppState> {
                             />
                         </div>
                         <br />
-                        <div className="pdf-upload-box">
-                            <PdfUpload onCasesExtracted={this.onCaseAdded} />
-                        </div>
                         <br />
                         <br />
                         <div className="case-recommendations">

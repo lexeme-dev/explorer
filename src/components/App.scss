@@ -85,6 +85,7 @@
 
 .sidebar {
   flex-grow: 1; /* Set the width of the sidebar */
+  flex-basis: 25%;
   z-index: 1; /* Stay on top */
   background-color: $body-bg-darker; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
@@ -93,5 +94,6 @@
 }
 
 .mainbar {
-  flex-grow: 3;
+  flex-grow: 4;
+  flex-basis: 50%;
 }
