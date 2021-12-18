@@ -81,6 +81,7 @@
 
 .primary-card {
     margin: 5px;
+    min-height: 400px;
 }
 
 .sidebar {
@@ -98,12 +99,13 @@
   flex-basis: 50%;
 }
 @media only screen and (max-width: 768px) {
+    .primary-card {
+        min-height: 200px;
+    }
     .sidebar {
         flex-basis: 100%;
-        min-height: 200px;
     }
     .mainbar {
         flex-basis: 100%;
-        min-height: 200px;
     }
 }
