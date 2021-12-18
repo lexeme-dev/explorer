@@ -85,39 +85,45 @@ class App extends Component<{}, AppState> {
         return (
             <div className="App">
                 <Header />
-                <div className="search-box">
-                    <CaseSearch
-                        selectedCases={selectedCases}
-                        onCaseSelected={this.onCaseAdded}
-                    />
-                </div>
-                <br />
-                <div className="pdf-upload-box">
-                    <PdfUpload onCasesExtracted={this.onCaseAdded} />
-                </div>
-                <br />
-                <div className="selected-cases">
-                    <SelectedCaseList selectedCases={selectedCases} />
-                </div>
-                <br />
-                <div className="case-recommendations">
-                    <h3>Recommendations</h3>
-                    {recommendationsLoading ? (
-                        <Spinner animation="border" role="status" />
-                    ) : (
-                        recommendations.map((rec) => (
-                            <div key={rec.id}>
-                                {fullCaseName(rec)}
-                                <Button
-                                    variant="link"
-                                    size="sm"
-                                    onClick={() => this.onCaseAdded(rec)}
-                                >
-                                    <PlusSquare className="align-text-top" />
-                                </Button>
-                            </div>
-                        ))
-                    )}
+                <div class="flexbar">
+                    <div className="sidebar primary-card card">
+                        <div className="selected-cases">
+                            <SelectedCaseList selectedCases={selectedCases} />
+                        </div>
+                    </div>
+                    <div className="mainbar primary-card card">
+                        <div className="search-box">
+                            <CaseSearch
+                                selectedCases={selectedCases}
+                                onCaseSelected={this.onCaseAdded}
+                            />
+                        </div>
+                        <br />
+                        <div className="pdf-upload-box">
+                            <PdfUpload onCasesExtracted={this.onCaseAdded} />
+                        </div>
+                        <br />
+                        <br />
+                        <div className="case-recommendations">
+                            <h3>Recommendations</h3>
+                            {recommendationsLoading ? (
+                                <Spinner animation="border" role="status" />
+                            ) : (
+                                recommendations.map((rec) => (
+                                    <div key={rec.id}>
+                                        {fullCaseName(rec)}
+                                        <Button
+                                            variant="link"
+                                            size="sm"
+                                            onClick={() => this.onCaseAdded(rec)}
+                                        >
+                                            <PlusSquare className="align-text-top" />
+                                        </Button>
+                                    </div>
+                                ))
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         );

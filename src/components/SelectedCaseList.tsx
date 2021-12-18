@@ -25,9 +25,12 @@ class SelectedCaseList extends Component<SelectedCaseListProps, SelectedCaseList
 
     render() {
         return (
-			this.state.selectedCases.map((opinion) => (
-				<OpinionDisplay opinion={ opinion } />
-			))
+			<div id="selected-case-list">
+				<h5 id="selected-case-list-header"> Bookmarked Cases </h5>
+				{ this.state.selectedCases.map((opinion) => (
+					<OpinionDisplay opinion={ opinion } />
+				)) }
+			</div>
         );
     }
 }

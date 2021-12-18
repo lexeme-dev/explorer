@@ -1,4 +1,5 @@
 @import "main";
+@import "variables";
 
 .App {
     text-align: center;
@@ -65,4 +66,33 @@
 
 .search-box {
     padding-top: 20px;
+}
+
+.flexbar {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap-reverse;
+    flex-grow: 1;
+    align-content: center;
+    align-items: stretch;
+    height: 100%;
+    padding: 15px;
+}
+
+.primary-card {
+    margin: 5px;
+}
+
+.sidebar {
+  width: 25%; /* Set the width of the sidebar */
+  z-index: 1; /* Stay on top */
+  top: 0; /* Stay at the top */
+  left: 0;
+  background-color: $body-bg-darker; /* Black */
+  overflow-x: hidden; /* Disable horizontal scroll */
+  text-color: $text-color;
+}
+
+.mainbar {
+  flex-grow: 1;
 }
