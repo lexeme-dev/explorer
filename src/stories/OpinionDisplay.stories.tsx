@@ -7,7 +7,6 @@ import OpinionDisplay from '../components/OpinionDisplay';
 export default {
   title: 'Opinions/OpinionDisplay',
   component: OpinionDisplay,
-  opinion: Opinion,
 } as ComponentMeta<typeof OpinionDisplay>;
 
 const Template: ComponentStory<typeof OpinionDisplay> = (args) => <OpinionDisplay {...args} />;
@@ -27,8 +26,6 @@ Default.args = {
       time: 199929600,
       year: 1976,
     },
-    cluster_uri: "https://www.courtlistener.com/api/rest/v3/clusters/109386/",
-    headline: "United States v. <b>Testan</b>, 424 U.S. 392 (1976)",
     id: 39936,
     opinion_uri: "https://www.courtlistener.com/api/rest/v3/opinions/109386/",
     resource_id: 109386,
