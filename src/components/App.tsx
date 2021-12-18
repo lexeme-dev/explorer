@@ -6,6 +6,7 @@ import { PlusSquare, XSquare } from 'react-bootstrap-icons';
 import { Button } from 'react-bootstrap';
 import CaseSearch from './CaseSearch';
 import Header from './Header';
+import SelectedCaseList from './SelectedCaseList';
 import Opinion, { fullCaseName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 import PdfUpload from './PdfUpload';
@@ -85,7 +86,6 @@ class App extends Component<{}, AppState> {
             <div className="App">
                 <Header />
                 <div className="search-box">
-                    <h3>Find Cases</h3>
                     <CaseSearch
                         selectedCases={selectedCases}
                         onCaseSelected={this.onCaseAdded}
@@ -97,32 +97,7 @@ class App extends Component<{}, AppState> {
                 </div>
                 <br />
                 <div className="selected-cases">
-                    <h3>
-                        Currently Selected Cases
-                        <Button onClick={this.onCasesCleared} variant="link">
-                            <XSquare style={{ color: 'red' }} className="align-text-top" />
-                        </Button>
-                    </h3>
-                    <ul className="selected-case-list">
-                        {selectedCases.map((opinion) => (
-                            <li key={opinion.id}>
-                                {fullCaseName(opinion)}
-                                {' '}
-                                {/* &nbsp; */}
-                                {/* <Button */}
-                                {/*    style={{ color: 'red' }} */}
-                                {/*    variant="link" */}
-                                {/*    size="sm" */}
-                                {/*    onClick={() => this.onCaseRemoved(opinion)} */}
-                                {/* > */}
-                                {/*    <XSquare className="align-text-top"/> */}
-                                {/* </Button> */}
-                                <ul>
-                                    {opinion.parentheticals?.map((paren) => <li>{paren}</li>)}
-                                </ul>
-                            </li>
-                        ))}
-                    </ul>
+                    <SelectedCaseList selectedCases={selectedCases} />
                 </div>
                 <br />
                 <div className="case-recommendations">

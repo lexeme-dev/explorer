@@ -19,6 +19,10 @@ class SelectedCaseList extends Component<SelectedCaseListProps, SelectedCaseList
 		this.state = {selectedCases: props.selectedCases};
 	}
 
+	componentWillReceiveProps (nextProps: SelectedCaseListProps) {
+		this.setState({selectedCases: nextProps.selectedCases});
+	}
+
     render() {
         return (
 			this.state.selectedCases.map((opinion) => (
