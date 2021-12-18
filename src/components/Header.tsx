@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './App.scss';
 import './Header.scss';
 import './main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
