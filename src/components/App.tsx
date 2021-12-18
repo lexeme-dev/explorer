@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
 import { PlusSquare, XSquare } from 'react-bootstrap-icons';
 import { Button } from 'react-bootstrap';
 import CaseSearch from './CaseSearch';
+import Header from './Header';
 import Opinion, { fullCaseName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 import PdfUpload from './PdfUpload';
@@ -82,6 +83,7 @@ class App extends Component<{}, AppState> {
         } = this.state;
         return (
             <div className="App">
+                <Header />
                 <div className="search-box">
                     <h3>Find Cases</h3>
                     <CaseSearch
