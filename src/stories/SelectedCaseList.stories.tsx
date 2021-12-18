@@ -17,7 +17,7 @@ const Template: ComponentStory<typeof SelectedCaseList> = (args) => <SelectedCas
 export const Default = Template.bind({});
 Default.args = {
   selectedCases: [
-    //OpinionDisplayStories.Default.args.opinion,
-    //OpinionDisplayStories.Default.args.opinion,
+    OpinionDisplayStories.Default.args.opinion,
+    OpinionDisplayStories.Default.args.opinion,
   ],
 };
