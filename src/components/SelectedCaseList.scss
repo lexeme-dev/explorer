@@ -1,5 +1,38 @@
 #selected-case-list {
     text-align: left;
-    margin-left: 15px;
-    margin-top: 10px;
+    margin: 10px;
+    margin-top: 15px;
+}
+#selected-case-list-header {
+    margin-left: 5px;
+}
+.flex-selected-case-list-item {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-case-list-item-name {
+    margin: 1px;
+    flex-grow: 4;
+}
+
+.selected-case-list-item-actions {
+    margin: 1px;
+    flex-grow: 1;
+    float: right;
+    text-align: right;
+}
+
+.selected-case-li {
+    padding: 5px;
+    padding-right: 4px;
+    justify-content: center;
+}
+
+.selected-case-list-trash-btn {
+    background-color: #DF0000;
 }
