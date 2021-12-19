@@ -85,7 +85,7 @@ class App extends Component<{}, AppState> {
         return (
             <div className="App">
                 <Header />
-                <div class="flexbar">
+                <div className="flexbar">
                     <div className="sidebar primary-card card">
                         <div className="selected-cases">
                             <SelectedCaseList selectedCases={selectedCases} />
