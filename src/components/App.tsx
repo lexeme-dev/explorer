@@ -88,7 +88,7 @@ class App extends Component<{}, AppState> {
                 <div className="flexbar">
                     <div className="sidebar primary-card card">
                         <div className="selected-cases">
-                            <SelectedCaseList selectedCases={selectedCases} />
+                            <SelectedCaseList selectedCases={selectedCases} onCaseRemoved={this.onCaseRemoved} />
                         </div>
                     </div>
                     <div className="mainbar primary-card card">

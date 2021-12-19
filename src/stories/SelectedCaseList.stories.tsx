@@ -20,4 +20,5 @@ Default.args = {
     OpinionDisplayStories.Default.args.opinion,
     OpinionDisplayStories.Default.args.opinion,
   ],
+  onCaseRemoved: action('onCaseRemoved'),
 };
