@@ -1,14 +1,14 @@
 @import 'main.scss';
 
-#selected-case-list {
+#primary-case-list {
     text-align: left;
     margin: 10px;
     margin-top: 15px;
 }
-#selected-case-list-header {
+#primary-case-list-header {
     margin-left: 5px;
 }
-.flex-selected-case-list-item {
+.flex-primary-case-list-item {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
@@ -17,23 +17,23 @@
     justify-content: center;
 }
 
-.selected-case-list-item-name {
+.primary-case-list-item-name {
     margin: 1px;
     flex-grow: 4;
 }
 
-.selected-case-list-item-actions {
+.primary-case-list-item-actions {
     margin: 1px;
     flex-grow: 1;
     float: right;
     text-align: right;
 }
 
-.selected-case-li {
+.primary-case-li {
     padding: 5px;
     padding-right: 4px;
     justify-content: center;
 }
 
-.selected-case-list-trash-btn {
+.primary-case-list-trash-btn {
 }

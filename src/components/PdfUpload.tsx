@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import Dropzone, { DropzoneOptions } from 'react-dropzone';
 import Spinner from 'react-bootstrap/Spinner';
-import { OnCasesAdded } from './App';
+import { OnCasesBookmarked } from './App';
 import PdfService from '../services/PdfService';
 
 type PdfUploadProps = {
-    onCasesExtracted: OnCasesAdded;
+    onCasesExtracted: OnCasesBookmarked;
 }
 type PdfUploadState = {
     invalidFileType: boolean;

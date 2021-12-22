@@ -6,12 +6,13 @@ import { PlusSquare, XSquare } from 'react-bootstrap-icons';
 import { Button } from 'react-bootstrap';
 import CaseSearch from './CaseSearch';
 import Header from './Header';
+import PrimaryCaseList from './PrimaryCaseList';
 import SelectedCaseList from './SelectedCaseList';
 import Opinion, { fullCaseName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 import PdfUpload from './PdfUpload';
 
-export type OnCasesAdded = (opinion: Opinion | Opinion[]) => void;
+export type OnCasesBookmarked = (opinion: Opinion | Opinion[]) => void;
 export type OnCaseRemoved = (opinion: Opinion) => void;
 
 type AppState = {
@@ -33,7 +34,7 @@ class App extends Component<{}, AppState> {
         this.caseService = new CaseService();
     }
 
-    onCaseAdded: OnCasesAdded = (opinion) => {
+    onCaseBookmarked: OnCasesBookmarked = (opinion) => {
         this.setState(
             (prevState) => ({
                 selectedCases: prevState.selectedCases.concat(opinion),
@@ -87,7 +88,7 @@ class App extends Component<{}, AppState> {
                 <Header />
                 <div className="flexbar">
                     <div className="sidebar primary-card card">
-                        <div className="selected-cases">
+                        <div className="primary-cases">
                             <SelectedCaseList selectedCases={selectedCases} onCaseRemoved={this.onCaseRemoved} />
                         </div>
                     </div>
@@ -95,29 +96,14 @@ class App extends Component<{}, AppState> {
                         <div className="search-box">
                             <CaseSearch
                                 selectedCases={selectedCases}
-                                onCaseSelected={this.onCaseAdded}
+                                onCaseSelected={this.onCaseBookmarked}
                             />
                         </div>
-                        <br />
-                        <br />
-                        <br />
                         <div className="case-recommendations">
-                            <h3>Recommendations</h3>
                             {recommendationsLoading ? (
                                 <Spinner animation="border" role="status" />
                             ) : (
-                                recommendations.map((rec) => (
-                                    <div key={rec.id}>
-                                        {fullCaseName(rec)}
-                                        <Button
-                                            variant="link"
-                                            size="sm"
-                                            onClick={() => this.onCaseAdded(rec)}
-                                        >
-                                            <PlusSquare className="align-text-top" />
-                                        </Button>
-                                    </div>
-                                ))
+                                <PrimaryCaseList recommendedCases={recommendations} onCaseBookmarked={this.onCaseBookmarked} searchCases={[]} />
                             )}
                         </div>
                     </div>

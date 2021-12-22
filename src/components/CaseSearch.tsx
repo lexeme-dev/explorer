@@ -7,12 +7,12 @@ import { debounce } from 'debounce';
 import Spinner from 'react-bootstrap/Spinner';
 import Opinion, { OpinionSuggestion } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
-import { OnCasesAdded } from './App';
+import { OnCasesBookmarked } from './App';
 import AutosuggestTheme from './AutosuggestTheme';
 
 type CaseSearchProps = {
     selectedCases: Opinion[];
-    onCaseSelected: OnCasesAdded;
+    onCaseSelected: OnCasesBookmarked;
 };
 type CaseSearchState = {
     query: string;
