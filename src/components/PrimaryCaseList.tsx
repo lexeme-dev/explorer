@@ -31,16 +31,16 @@ class PrimaryCaseList extends Component<PrimaryCaseListProps, PrimaryCaseListSta
 
     render() {
         return (
-			<div id="selected-case-list">
+			<div id="primary-case-list">
 				<ul className="list-group justify-content-center">
 					{ this.state.recommendedCases.map((opinion) => (
-						<li className="list-group-item selected-case-li">
-							<div className="flex-selected-case-list-item">
-								<div className="selected-case-list-item-name">
+						<li className="list-group-item primary-case-li">
+							<div className="flex-primary-case-list-item">
+								<div className="primary-case-list-item-name">
 									<OpinionDisplay opinion={ opinion } />
 								</div>
-								<div className="selected-case-list-item-actions">
-									<Button variant="primary" className="selected-case-list-trash-btn" size="sm" onClick={() => this.props.onCaseBookmarked(opinion) }> <Bookmark /> </Button>
+								<div className="primary-case-list-item-actions">
+									<Button variant="primary" className="primary-case-list-trash-btn" size="sm" onClick={() => this.props.onCaseBookmarked(opinion) }> <Bookmark /> </Button>
 								</div> 
 							</div>
 						</li>

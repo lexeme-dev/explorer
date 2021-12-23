@@ -64,9 +64,6 @@
     z-index: -1;
 }
 
-.search-box {
-}
-
 .flexbar {
     display: flex;
     flex-direction: row;
@@ -81,6 +78,10 @@
 .primary-card {
     margin: 5px;
     min-height: 400px;
+}
+
+.case-recommendations {
+    margin-top: 0px;
 }
 
 .sidebar {

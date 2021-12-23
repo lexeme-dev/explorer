@@ -9,6 +9,7 @@ import Opinion, { OpinionSuggestion } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 import { OnCasesBookmarked } from './App';
 import AutosuggestTheme from './AutosuggestTheme';
+import './CaseSearch.scss';
 
 type CaseSearchProps = {
     selectedCases: Opinion[];
@@ -102,7 +103,6 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                     theme={AutosuggestTheme}
                     highlightFirstSuggestion
                 />
-                &nbsp;
                 {suggestionsLoading && (
                     <Spinner animation="border" role="status" size="sm" />
                 )}

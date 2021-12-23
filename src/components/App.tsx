@@ -93,12 +93,10 @@ class App extends Component<{}, AppState> {
                         </div>
                     </div>
                     <div className="mainbar primary-card card">
-                        <div className="search-box">
-                            <CaseSearch
-                                selectedCases={selectedCases}
-                                onCaseSelected={this.onCaseBookmarked}
-                            />
-                        </div>
+                        <CaseSearch
+                            selectedCases={selectedCases}
+                            onCaseSelected={this.onCaseBookmarked}
+                        />
                         <div className="case-recommendations">
                             {recommendationsLoading ? (
                                 <Spinner animation="border" role="status" />
