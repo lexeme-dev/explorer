@@ -90,11 +90,11 @@
   background-color: $body-bg-darker; /* Black */
   overflow-x: hidden; /* Disable horizontal scroll */
   text-color: $text-color;
-  flex-grow: 1;
+  flex-grow: 0;
 }
 
 .mainbar {
-  flex-grow: 4;
+  flex-grow: 9;
   flex-basis: 50%;
 }
 @media only screen and (max-width: 768px) {

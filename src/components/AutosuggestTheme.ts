@@ -3,16 +3,18 @@ import { Theme } from 'react-autosuggest';
 const AutosuggestTheme: Theme = {
     container: {
         position: 'relative',
-        display: 'inline-block',
+        display: 'block',
         width: '100%',
         padding: '15px',
+        alignSelf: 'left',
+        alignItems: 'left',
     },
     input: {
         width: '100%',
-        alignSelf: 'stretch',
+        alignSelf: 'left',
+        maxWidth: '500px',
         height: 40,
         padding: '10px 20px',
-        fontFamily: 'Helvetica, sans-serif',
         fontWeight: 300,
         fontSize: 16,
         border: '1px solid #aaa',
@@ -20,6 +22,8 @@ const AutosuggestTheme: Theme = {
         borderTopRightRadius: 0,
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
+        alignItems: 'left',
+        display: 'block',
     },
     inputFocused: {
         outline: 'none',
@@ -33,11 +37,13 @@ const AutosuggestTheme: Theme = {
     },
     suggestionsContainerOpen: {
         display: 'block',
+        position: 'absolute',
         width: '100%',
         border: '1px solid #aaa',
+        borderTop: '0px solid #aaa',
         backgroundColor: '#fff',
+        maxWidth: '500px',
         alignSelf: 'stretch',
-        fontFamily: 'Helvetica, sans-serif',
         fontWeight: 300,
         fontSize: 16,
         borderBottomLeftRadius: 4,
@@ -56,6 +62,6 @@ const AutosuggestTheme: Theme = {
     suggestionHighlighted: {
         backgroundColor: '#ddd',
     },
-};
+} as Theme;
 
 export default AutosuggestTheme;
