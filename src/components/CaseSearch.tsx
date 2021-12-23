@@ -90,7 +90,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
             value: query,
         };
         return (
-            <div>
+            <div className="input-group">
                 <Autosuggest
                     inputProps={inputProps}
                     getSuggestionValue={(suggestion) => suggestion.cluster.case_name}
