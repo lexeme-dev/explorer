@@ -1,5 +1,5 @@
 import Opinion, { OpinionSuggestion } from '../interfaces/Opinion';
-import { CASES_SEARCH_ROUTE, CASES_SIMILAR_ROUTE } from './ServiceConstants';
+import { CASES_SEARCH_ROUTE, CASES_SIMILAR_ROUTE, CASES_HTML_ROUTE } from './ServiceConstants';
 import BaseService from './BaseService';
 
 class CaseService extends BaseService {
@@ -19,6 +19,12 @@ class CaseService extends BaseService {
                 params: { cases: opinion_ids, max_cases },
             })
             .then((r) => r.data as Opinion[]);
+    }
+
+    getCaseHtml(opinion: Opinion):
+        Promise<Opinion> {
+        return this.axios
+            .get(CASES_HTML_ROUTE.replace("<int:resource_id>", "" + opinion.resource_id));
     }
 }
 
