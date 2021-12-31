@@ -2,15 +2,12 @@ import React, { Component } from 'react';
 import './App.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Spinner from 'react-bootstrap/Spinner';
-import { PlusSquare, XSquare } from 'react-bootstrap-icons';
-import { Button } from 'react-bootstrap';
 import CaseSearch from './CaseSearch';
 import Header from './Header';
 import PrimaryCaseList from './PrimaryCaseList';
 import SelectedCaseList from './SelectedCaseList';
-import Opinion, { fullCaseName } from '../interfaces/Opinion';
+import Opinion from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
-import PdfUpload from './PdfUpload';
 
 export type OnCasesBookmarked = (opinion: Opinion | Opinion[]) => void;
 export type OnCaseRemoved = (opinion: Opinion) => void;
@@ -101,7 +98,11 @@ class App extends Component<{}, AppState> {
                             {recommendationsLoading ? (
                                 <Spinner animation="border" role="status" />
                             ) : (
-                                <PrimaryCaseList recommendedCases={recommendations} onCaseBookmarked={this.onCaseBookmarked} searchCases={[]} />
+                                <PrimaryCaseList
+                                    recommendedCases={recommendations}
+                                    onCaseBookmarked={this.onCaseBookmarked}
+                                    searchCases={[]}
+                                />
                             )}
                         </div>
                     </div>
