@@ -44,7 +44,6 @@ const AutosuggestTheme: Theme = {
         backgroundColor: '#fff',
         maxWidth: '500px',
         alignSelf: 'stretch',
-        fontWeight: 300,
         fontSize: 16,
         borderBottomLeftRadius: 4,
         borderBottomRightRadius: 4,
