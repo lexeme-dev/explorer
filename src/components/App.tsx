@@ -63,7 +63,7 @@ class App extends Component<{}, AppState> {
         this.setState({ recommendationsLoading: true });
         const { selectedCases } = this.state;
         this.caseService
-            .getSimilarCases(selectedCases, 10)
+            .getRecommendedCases(selectedCases, 10)
             .then((recommendations) => this.setState({
                 recommendations,
                 recommendationsLoading: false,
