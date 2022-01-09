@@ -11,7 +11,7 @@ import { OnCaseRemoved, OnCaseDisplayed } from './App';
 export type SelectedCaseListProps = {
     selectedCases: Opinion[];
     onCaseRemoved: OnCaseRemoved;
-    onCaseDisplayted: OnCaseDisplayed;
+    onCaseDisplayed: OnCaseDisplayed;
 };
 
 function SelectedCaseList(props: SelectedCaseListProps) {
