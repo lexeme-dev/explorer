@@ -6,15 +6,16 @@ import './main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Opinion from '../interfaces/Opinion';
 import OpinionDisplay from './OpinionDisplay';
-import { OnCaseRemoved } from './App';
+import { OnCaseRemoved, OnCaseDisplayed } from './App';
 
 export type SelectedCaseListProps = {
     selectedCases: Opinion[];
     onCaseRemoved: OnCaseRemoved;
+    onCaseDisplayted: OnCaseDisplayed;
 };
 
 function SelectedCaseList(props: SelectedCaseListProps) {
-    const { selectedCases, onCaseRemoved } = props;
+    const { selectedCases, onCaseRemoved, onCaseDisplayed } = props;
     return (
         <div id="selected-case-list">
             <h5 id="selected-case-list-header"> Bookmarked Cases </h5>
@@ -23,7 +24,9 @@ function SelectedCaseList(props: SelectedCaseListProps) {
                     <li className="list-group-item selected-case-li">
                         <div className="flex-selected-case-list-item">
                             <div className="selected-case-list-item-name">
-                                <OpinionDisplay opinion={opinion} />
+                                <Button variant="link" className="text-body" onClick={() => onCaseDisplayed(opinion)}>
+                                    <OpinionDisplay opinion={opinion} />
+                                </Button>
                             </div>
                             <div className="selected-case-list-item-actions">
                                 <Button

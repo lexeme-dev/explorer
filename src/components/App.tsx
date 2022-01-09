@@ -126,7 +126,7 @@ class App extends Component<{}, AppState> {
                 <div className="flexbar">
                     <div className="sidebar primary-card card">
                         <div className="primary-cases">
-                            <SelectedCaseList selectedCases={selectedCases} onCaseRemoved={this.onCaseRemoved} />
+                            <SelectedCaseList selectedCases={selectedCases} onCaseRemoved={this.onCaseRemoved} onCaseDisplayed={this.onCaseDisplayed} />
                         </div>
                     </div>
                     <div className="mainbar primary-card card">
