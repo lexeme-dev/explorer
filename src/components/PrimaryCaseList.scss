@@ -2,7 +2,7 @@
 
 #primary-case-list {
     text-align: left;
-    margin: 10px;
+    margin: 0px;
     margin-top: 0px;
 }
 .flex-primary-case-list-item {
@@ -12,24 +12,28 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    padding: 0px;
+    margin: 0px;
 }
 
 .primary-case-list-item-name {
-    margin: 1px;
+    margin: 0px;
     flex-grow: 4;
 }
 
 .primary-case-list-item-actions {
-    margin: 1px;
+    margin: 0px;
     flex-grow: 1;
     float: right;
     text-align: right;
 }
 
 .primary-case-li {
-    padding: 5px;
-    padding-right: 4px;
+    margin: 10px;
+    margin-top: 0px;
+    margin-bottom: 0px;
     justify-content: center;
+    padding: 0px;
 }
 
 .primary-case-list-trash-btn {

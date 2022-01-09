@@ -25,7 +25,7 @@ function PrimaryCaseList(props: PrimaryCaseListProps) {
         <div id="primary-case-list">
             <ul className="list-group justify-content-center">
                 {recommendedCases.map((opinion) => (
-                    <li className="list-group-item primary-case-li">
+                    <li className="list-group-item primary-case-li py-1">
                         <div className="flex-primary-case-list-item">
                             <div className="primary-case-list-item-name">
                                 <Button variant="link" className="text-body" onClick={() => onCaseDisplayed(opinion)} >
