@@ -17,7 +17,7 @@ class Header extends Component<HeaderProps, HeaderState> {
         return (
             <nav id="explorerNav" className="navbar navbar-inverse py-0 bg-primary">
                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-                <a className="h1 text-light font-weight-bolder" href="#">explorer</a>
+                <a className="h1 text-light font-weight-bolder" href="#">lexcaliber</a>
             </nav>
         );
     }
