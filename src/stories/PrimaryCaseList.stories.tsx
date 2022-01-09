@@ -20,4 +20,5 @@ Default.args = {
         OpinionDisplayStories.Default.args?.opinion!,
     ],
     onCaseBookmarked: action('onCaseBookmarked'),
+    onCaseDisplayed: action('onCaseDisplayed'),
 };

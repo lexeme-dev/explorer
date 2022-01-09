@@ -6,16 +6,19 @@ import CaseSearch from './CaseSearch';
 import Header from './Header';
 import PrimaryCaseList from './PrimaryCaseList';
 import SelectedCaseList from './SelectedCaseList';
+import OpinionHtml from './OpinionHtml';
 import Opinion from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 
 export type OnCasesBookmarked = (opinion: Opinion | Opinion[]) => void;
 export type OnCaseRemoved = (opinion: Opinion) => void;
+export type OnCaseDisplayed = (opinion: undefined | Opinion) => void;
 
 type AppState = {
     selectedCases: Opinion[];
     recommendations: Opinion[];
     recommendationsLoading: boolean;
+    displayedCase: undefined | Opinion;
 };
 
 class App extends Component<{}, AppState> {
@@ -27,6 +30,7 @@ class App extends Component<{}, AppState> {
             selectedCases: [],
             recommendations: [],
             recommendationsLoading: false,
+            displayedCase: undefined
         };
         this.caseService = new CaseService();
     }
@@ -48,6 +52,14 @@ class App extends Component<{}, AppState> {
                 ),
             }),
             () => this.loadRecommendations(),
+        );
+    };
+
+    onCaseDisplayed: OnCaseDisplayed = (opinion) => {
+        this.setState(
+            (prevState) => ({
+                displayedCase: opinion
+            })
         );
     };
 
@@ -74,6 +86,34 @@ class App extends Component<{}, AppState> {
             }));
     };
 
+    mainPanel = () => {
+        const {
+            selectedCases,
+            recommendations,
+            recommendationsLoading,
+            displayedCase
+        } = this.state;
+        if (displayedCase) {
+            return ( <OpinionHtml opinion={displayedCase} onCaseDisplayed={this.onCaseDisplayed}/> );
+        }
+        else {
+            return (
+                <div className="case-recommendations">
+                    {recommendationsLoading ? (
+                        <Spinner animation="border" role="status" />
+                    ) : (
+                        <PrimaryCaseList
+                            recommendedCases={recommendations}
+                            onCaseBookmarked={this.onCaseBookmarked}
+                            onCaseDisplayed={this.onCaseDisplayed}
+                            searchCases={[]}
+                        />
+                    )}
+                </div>
+            );
+        }
+    }
+
     render() {
         const {
             selectedCases,
@@ -94,17 +134,7 @@ class App extends Component<{}, AppState> {
                             selectedCases={selectedCases}
                             onCaseSelected={this.onCaseBookmarked}
                         />
-                        <div className="case-recommendations">
-                            {recommendationsLoading ? (
-                                <Spinner animation="border" role="status" />
-                            ) : (
-                                <PrimaryCaseList
-                                    recommendedCases={recommendations}
-                                    onCaseBookmarked={this.onCaseBookmarked}
-                                    searchCases={[]}
-                                />
-                            )}
-                        </div>
+                        { this.mainPanel() }
                     </div>
                 </div>
             </div>

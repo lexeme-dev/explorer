@@ -1,5 +1,6 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 import Opinion, { fullCaseName } from '../interfaces/Opinion';
 import OpinionHtml from '../components/OpinionHtml';
 
@@ -29,4 +30,5 @@ Default.args = {
     opinion_uri: "https://www.courtlistener.com/api/rest/v3/opinions/109386/",
     resource_id: 109386,
   },
+  onCaseDisplayed: action("onCaseDisplayed"),
 };

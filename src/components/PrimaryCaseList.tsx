@@ -6,12 +6,13 @@ import './main.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Opinion from '../interfaces/Opinion';
 import OpinionDisplay from './OpinionDisplay';
-import { OnCasesBookmarked } from './App';
+import { OnCasesBookmarked, OnCaseDisplayed } from './App';
 
 export type PrimaryCaseListProps = {
     recommendedCases: Opinion[];
     searchCases: Opinion[];
     onCaseBookmarked: OnCasesBookmarked;
+    onCaseDisplayed: OnCaseDisplayed;
 };
 export type PrimaryCaseListState = {
     recommendedCases: Opinion[];
@@ -19,7 +20,7 @@ export type PrimaryCaseListState = {
 };
 
 function PrimaryCaseList(props: PrimaryCaseListProps) {
-    const { recommendedCases, onCaseBookmarked } = props;
+    const { recommendedCases, onCaseBookmarked, onCaseDisplayed } = props;
     return (
         <div id="primary-case-list">
             <ul className="list-group justify-content-center">
@@ -27,7 +28,9 @@ function PrimaryCaseList(props: PrimaryCaseListProps) {
                     <li className="list-group-item primary-case-li">
                         <div className="flex-primary-case-list-item">
                             <div className="primary-case-list-item-name">
-                                <OpinionDisplay opinion={opinion} />
+                                <Button variant="link" className="text-body" onClick={() => onCaseDisplayed(opinion)} >
+                                    <OpinionDisplay opinion={opinion} />
+                                </Button>
                             </div>
                             <div className="primary-case-list-item-actions">
                                 <Button
