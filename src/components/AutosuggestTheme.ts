@@ -53,6 +53,7 @@ const AutosuggestTheme: Theme = {
         margin: 0,
         padding: 0,
         listStyleType: 'none',
+        alignText: 'left',
     },
     suggestion: {
         cursor: 'pointer',
