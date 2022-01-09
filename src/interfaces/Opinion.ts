@@ -5,7 +5,6 @@ interface Opinion {
     cluster: Cluster;
     resource_id: number;
     opinion_uri: string;
-    court: string;
     parentheticals?: string[];
 }
 

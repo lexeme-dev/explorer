@@ -1,5 +1,5 @@
 import Opinion, { OpinionSuggestion } from '../interfaces/Opinion';
-import { CASES_SEARCH_ROUTE, CASES_SIMILAR_ROUTE, CASES_HTML_ROUTE } from './ServiceConstants';
+import { CASES_SEARCH_ROUTE, CASES_RECOMMENDATIONS_ROUTE, CASES_SIMILAR_ROUTE, CASES_HTML_ROUTE } from './ServiceConstants';
 import BaseService from './BaseService';
 
 class CaseService extends BaseService {
@@ -9,13 +9,13 @@ class CaseService extends BaseService {
             .then((r) => r.data as OpinionSuggestion[]);
     }
 
-    getSimilarCases(
+    getRecommendedCases(
         opinions: Opinion[],
         max_cases: number,
     ): Promise<Opinion[]> {
         const opinion_ids = opinions.map((op) => op.resource_id);
         return this.axios
-            .get(CASES_SIMILAR_ROUTE, {
+            .get(CASES_RECOMMENDATIONS_ROUTE, {
                 params: { cases: opinion_ids, max_cases },
             })
             .then((r) => r.data as Opinion[]);

@@ -10,6 +10,13 @@ type OpinionDisplayProps = {
 }
 
 function OpinionDisplay(props: OpinionDisplayProps) {
-    return <div> { fullCaseName(props.opinion) } </div>;
+    const { opinion } = props;
+    return (
+        <div>
+            {' '}
+            { fullCaseName(opinion) }
+            {' '}
+        </div>
+    );
 }
 export default OpinionDisplay;
