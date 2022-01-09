@@ -22,9 +22,10 @@ class CaseService extends BaseService {
     }
 
     getCaseHtml(opinion: Opinion):
-        Promise<Opinion> {
+        Promise<string> {
         return this.axios
-            .get(CASES_HTML_ROUTE.replace("<int:resource_id>", "" + opinion.resource_id));
+            .get(CASES_HTML_ROUTE.replace("<int:resource_id>", "" + opinion.resource_id))
+            .then((r) => r.data as string);
     }
 }
 

@@ -9,15 +9,19 @@ type OpinionHtmlProps = {
     opinion: Opinion;
 }
 
-class OpinionHtml extends Component<OpinionHtmlProps> {
+type OpinionHtmlState = {
+    html: string;
+}
+
+class OpinionHtml extends Component<OpinionHtmlProps, OpinionHtmlState> {
   constructor (props: OpinionHtmlProps) {
     super(props)
-    this.state = { html: [] }
+    this.state = { html: "" }
   }
 
   componentDidMount() {
     var cs: CaseService = new CaseService()
-	cs.getCaseHtml(this.props.opinion).then(response => this.setState({html: response.data}));
+	cs.getCaseHtml(this.props.opinion).then(response => this.setState({html: response}));
   }
 
   render () {
