@@ -94,7 +94,7 @@ class App extends Component<{}, AppState> {
             displayedCase
         } = this.state;
         if (displayedCase) {
-            return ( <OpinionHtml opinion={displayedCase} onCaseDisplayed={this.onCaseDisplayed}/> );
+            return ( <OpinionHtml opinion={displayedCase} onCaseDisplayed={this.onCaseDisplayed} onCaseBookmarked={this.onCaseBookmarked} /> );
         }
         else {
             return (

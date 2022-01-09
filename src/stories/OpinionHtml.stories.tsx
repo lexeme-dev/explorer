@@ -31,4 +31,5 @@ Default.args = {
     resource_id: 109386,
   },
   onCaseDisplayed: action("onCaseDisplayed"),
+  onCaseBookmarked: action("onCaseBookmarked"),
 };
