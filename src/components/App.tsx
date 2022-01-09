@@ -132,7 +132,7 @@ class App extends Component<{}, AppState> {
                     <div className="mainbar primary-card card">
                         <CaseSearch
                             selectedCases={selectedCases}
-                            onCaseSelected={this.onCaseBookmarked}
+                            onCaseSelected={this.onCaseDisplayed}
                         />
                         { this.mainPanel() }
                     </div>
