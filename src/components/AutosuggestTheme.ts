@@ -4,8 +4,9 @@ const AutosuggestTheme: Theme = {
     container: {
         position: 'relative',
         display: 'block',
-        width: '100%',
-        padding: '15px',
+        width: '70%',
+        margin: '5px',
+        padding: '0px',
         alignSelf: 'left',
         alignItems: 'left',
     },

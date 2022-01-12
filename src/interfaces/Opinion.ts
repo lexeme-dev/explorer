@@ -12,7 +12,8 @@ export interface OpinionSuggestion extends Opinion {
     headline: string;
 }
 
-var court_id_to_name: { [id: string]: string; } = {
+export var court_id_to_name: { [id: string]: string; } = {
+    scotus: "Supreme Court",
     ca1: "1st Cir.",
     ca2: "2nd Cir.",
     ca3: "3rd Cir.",

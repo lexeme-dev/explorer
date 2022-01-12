@@ -5,7 +5,8 @@ import Autosuggest, {
 } from 'react-autosuggest';
 import { debounce } from 'debounce';
 import Spinner from 'react-bootstrap/Spinner';
-import Opinion, { OpinionSuggestion } from '../interfaces/Opinion';
+import { Dropdown, Form, Button } from 'react-bootstrap';
+import Opinion, { OpinionSuggestion, court_id_to_name } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 import { OnCaseDisplayed } from './App';
 import AutosuggestTheme from './AutosuggestTheme';
@@ -91,7 +92,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
             value: query,
         };
         return (
-            <div className="input-group">
+            <div id="case-search-input-group" className="input-group">
                 <Autosuggest
                     inputProps={inputProps}
                     getSuggestionValue={(suggestion) => suggestion.cluster.case_name}
@@ -103,9 +104,15 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                     theme={AutosuggestTheme}
                     highlightFirstSuggestion
                 />
-                {suggestionsLoading && (
-                    <Spinner animation="border" role="status" size="sm" />
-                )}
+                <Dropdown>
+                  <Dropdown.Toggle className="case-search-dropdown" variant="secondary">
+                      Jurisdictions
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                      {Object.keys(court_id_to_name).map((court_id) =>
+                            <Form.Check type="checkbox" label={court_id_to_name[court_id]} className="m-2" />) }
+                  </Dropdown.Menu>
+                </Dropdown>
             </div>
         );
     }
