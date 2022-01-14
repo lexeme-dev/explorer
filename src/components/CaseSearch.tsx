@@ -6,15 +6,17 @@ import Autosuggest, {
 import { debounce } from 'debounce';
 import Spinner from 'react-bootstrap/Spinner';
 import { Dropdown, Form, Button } from 'react-bootstrap';
-import Opinion, { OpinionSuggestion, court_id_to_name } from '../interfaces/Opinion';
+import Opinion, { OpinionSuggestion, courtIdToName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
-import { OnCaseDisplayed } from './App';
+import { OnCaseDisplayed, OnCourtSelectionChange } from './App';
 import AutosuggestTheme from './AutosuggestTheme';
 import './CaseSearch.scss';
 
 type CaseSearchProps = {
     selectedCases: Opinion[];
     onCaseSelected: OnCaseDisplayed;
+    onCourtSelectionChange: OnCourtSelectionChange;
+    selectedCourts: Set
 };
 type CaseSearchState = {
     query: string;
@@ -35,6 +37,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
             query: '',
             suggestions: [],
             suggestionsLoading: false,
+            searchCourts: new Set()
         };
         this.caseService = new CaseService();
     }
@@ -109,8 +112,9 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                       Jurisdictions
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                      {Object.keys(court_id_to_name).map((court_id) =>
-                            <Form.Check type="checkbox" label={court_id_to_name[court_id]} className="m-2" />) }
+                      { console.log('ca1') in this.props.selectedCourts }
+                      {Object.keys(courtIdToName).map((court_id) =>
+                      <Form.Check type="checkbox" defaultChecked={this.props.selectedCourts.has(court_id)} label={courtIdToName[court_id]} className="m-2" onChange={() => { this.props.onCourtSelectionChange(court_id) } }/>) }
                   </Dropdown.Menu>
                 </Dropdown>
             </div>
