@@ -121,9 +121,9 @@ class App extends Component<{}, AppState> {
 
     onCourtSelectionChange = (court_id) => {
         if (this.state.selectedCourts.has(court_id)) {
-            this.setState( (prevState) => { selectedCourts: prevState.selectedCourts.delete(court_id) })
+            this.setState( (prevState) => { selectedCourts: prevState.selectedCourts.delete(court_id) }, () => this.loadRecommendations());
         } else {
-            this.setState( (prevState) => { selectedCourts: prevState.selectedCourts.add(court_id) })
+            this.setState( (prevState) => { selectedCourts: prevState.selectedCourts.add(court_id) }, () => this.loadRecommendations());
         }
         console.log(this.state.selectedCourts)
     }
