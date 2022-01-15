@@ -16,7 +16,7 @@ type CaseSearchProps = {
     selectedCases: Opinion[];
     onCaseSelected: OnCaseDisplayed;
     onCourtSelectionChange: OnCourtSelectionChange;
-    selectedCourts: Set
+    selectedCourts: Set<string>
 };
 type CaseSearchState = {
     query: string;
@@ -37,7 +37,6 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
             query: '',
             suggestions: [],
             suggestionsLoading: false,
-            searchCourts: new Set()
         };
         this.caseService = new CaseService();
     }
@@ -112,7 +111,6 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                       Jurisdictions
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
-                      { console.log('ca1') in this.props.selectedCourts }
                       {Object.keys(courtIdToName).map((court_id) =>
                       <Form.Check type="checkbox" defaultChecked={this.props.selectedCourts.has(court_id)} label={courtIdToName[court_id]} className="m-2" onChange={() => { this.props.onCourtSelectionChange(court_id) } }/>) }
                   </Dropdown.Menu>

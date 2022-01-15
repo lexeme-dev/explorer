@@ -20,7 +20,7 @@ type AppState = {
     recommendations: Opinion[];
     recommendationsLoading: boolean;
     displayedCase: undefined | Opinion;
-    selectedCourts: Set;
+    selectedCourts: Set<string>;
 };
 
 class App extends Component<{}, AppState> {
@@ -28,7 +28,7 @@ class App extends Component<{}, AppState> {
 
     constructor(props: {}) {
         super(props);
-        let s: Set = new Set()
+        let s: Set<string>= new Set()
         Object.keys(courtIdToName).forEach((court_id) => {s.add(court_id)})
         this.state = {
             selectedCases: [],
@@ -119,7 +119,7 @@ class App extends Component<{}, AppState> {
         }
     }
 
-    onCourtSelectionChange = (court_id) => {
+    onCourtSelectionChange = (court_id: string) => {
         if (this.state.selectedCourts.has(court_id)) {
             this.setState( (prevState) => { selectedCourts: prevState.selectedCourts.delete(court_id) }, () => this.loadRecommendations());
         } else {

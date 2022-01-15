@@ -11,7 +11,7 @@ class CaseService extends BaseService {
 
     getRecommendedCases(
         opinions: Opinion[],
-        courts: Set,
+        courts: Set<string>,
         max_cases: number,
     ): Promise<Opinion[]> {
         const opinion_ids = opinions.map((op) => op.resource_id);
