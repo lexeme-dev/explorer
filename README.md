@@ -1,50 +1,30 @@
-# Getting Started with Create React App
+# Lexcaliber Explorer
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Lexcaliber is an ongoing project to develop novel algorithms and analysis techniques for legal research.
+The [Lexcaliber Core](https://github.com/lexcaliber/core) repository showcases a variety of novel techniques in legal document analysis, including legal recommendation & discovery software, citation context scraping & analysis, and relevant scaffolding.
 
-## Available Scripts
+The Lexcaliber Explorer (Lexplorer?) is a companion to the Core which is intended to provide a web-based frontend which can demonstrate some of the Core’s functionality.
 
-In the project directory, you can run:
+Currently, the Explorer focuses on legal recommendation.
+Users of Explorer can search for opinions from the Supreme Court and Federal Circuit courts and bookmark relevant documents.
+New, relevant cases will be suggested based on bookmarked cases.
 
-### `yarn start`
+Recommendations can also be filtered by jurisdiction.
+This is handy if, for example, you know about a few relevant cases in the 10th Circuit but want to know what the analogous precedent would be in the 1st Circuit.
+We’ve anecdotally tested this out with circuit splits; and given one end of a circuit split and a filter to the right jurisdiction, the recommendation engine consistently returns the splitting case as the top result.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Images
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+![Lexcaliber Explorer Default View](readme_images/blank.png)
+![Opinion Reading View](readme_images/hurley.png)
+![Recommendations View](readme_images/recommendations.png)
+![Jurisdiciton Selection](readme_images/9thcirc.png)
+![Ascuaga](readme_images/ascuaga.png)
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Install and Run
 
-### `yarn build`
+1. Follow the instructions for running and starting the Lexcaliber Core server locally.
+2. Make sure you have `yarn`.
+3. Clone the repo and run `yarn` followed by `yarn start`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## `yarn storybook init` and `yarn storybook`
-
-Necessary for first-time storybook setup and running it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
