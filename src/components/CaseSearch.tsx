@@ -5,15 +5,18 @@ import Autosuggest, {
 } from 'react-autosuggest';
 import { debounce } from 'debounce';
 import Spinner from 'react-bootstrap/Spinner';
-import Opinion, { OpinionSuggestion } from '../interfaces/Opinion';
+import { Dropdown, Form, Button } from 'react-bootstrap';
+import Opinion, { OpinionSuggestion, courtIdToName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
-import { OnCaseDisplayed } from './App';
+import { OnCaseDisplayed, OnCourtSelectionChange } from './App';
 import AutosuggestTheme from './AutosuggestTheme';
 import './CaseSearch.scss';
 
 type CaseSearchProps = {
     selectedCases: Opinion[];
     onCaseSelected: OnCaseDisplayed;
+    onCourtSelectionChange: OnCourtSelectionChange;
+    selectedCourts: Set<string>
 };
 type CaseSearchState = {
     query: string;
@@ -91,7 +94,7 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
             value: query,
         };
         return (
-            <div className="input-group">
+            <div id="case-search-input-group" className="input-group">
                 <Autosuggest
                     inputProps={inputProps}
                     getSuggestionValue={(suggestion) => suggestion.cluster.case_name}
@@ -103,9 +106,15 @@ class CaseSearch extends Component<CaseSearchProps, CaseSearchState> {
                     theme={AutosuggestTheme}
                     highlightFirstSuggestion
                 />
-                {suggestionsLoading && (
-                    <Spinner animation="border" role="status" size="sm" />
-                )}
+                <Dropdown>
+                  <Dropdown.Toggle className="case-search-dropdown" variant="secondary">
+                      Jurisdictions
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
+                      {Object.keys(courtIdToName).map((court_id) =>
+                      <Form.Check type="checkbox" defaultChecked={this.props.selectedCourts.has(court_id)} label={courtIdToName[court_id]} className="m-2" onChange={() => { this.props.onCourtSelectionChange(court_id) } }/>) }
+                  </Dropdown.Menu>
+                </Dropdown>
             </div>
         );
     }

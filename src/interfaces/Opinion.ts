@@ -12,7 +12,8 @@ export interface OpinionSuggestion extends Opinion {
     headline: string;
 }
 
-var court_id_to_name: { [id: string]: string; } = {
+export var courtIdToName: { [id: string]: string; } = {
+    scotus: "Supreme Court",
     ca1: "1st Cir.",
     ca2: "2nd Cir.",
     ca3: "3rd Cir.",
@@ -36,7 +37,7 @@ export const fullCaseName = ({ cluster }: Opinion): string => {
     if (cluster.court == "scotus") {
         opinionDisplayText += ` (${cluster.year})`;
     } else {
-        opinionDisplayText += ` (${court_id_to_name[cluster.court]} ${cluster.year})`;
+        opinionDisplayText += ` (${courtIdToName[cluster.court]} ${cluster.year})`;
     }
     return opinionDisplayText;
 };

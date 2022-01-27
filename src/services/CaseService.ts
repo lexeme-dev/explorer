@@ -11,12 +11,13 @@ class CaseService extends BaseService {
 
     getRecommendedCases(
         opinions: Opinion[],
+        courts: Set<string>,
         max_cases: number,
     ): Promise<Opinion[]> {
         const opinion_ids = opinions.map((op) => op.resource_id);
         return this.axios
             .get(CASES_RECOMMENDATIONS_ROUTE, {
-                params: { cases: opinion_ids, max_cases },
+                params: { courts: Array.from(courts.values()), cases: opinion_ids, max_cases },
             })
             .then((r) => r.data as Opinion[]);
     }

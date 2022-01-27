@@ -1,5 +1,19 @@
 @import "main";
 
-.input-group {
-    margin: 0;
+#case-search-input-group {
+    align-items: left;
+    justify-content: left;
+    width: 100%;
+    margin-bottom: 10px;
 }
+
+.case-search-autosuggest {
+    flex-grow: 4;
+}
+
+.case-search-dropdown {
+    margin: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+

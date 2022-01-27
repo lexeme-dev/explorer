@@ -7,18 +7,20 @@ import Header from './Header';
 import PrimaryCaseList from './PrimaryCaseList';
 import SelectedCaseList from './SelectedCaseList';
 import OpinionHtml from './OpinionHtml';
-import Opinion from '../interfaces/Opinion';
+import Opinion, { courtIdToName } from '../interfaces/Opinion';
 import CaseService from '../services/CaseService';
 
 export type OnCasesBookmarked = (opinion: Opinion | Opinion[]) => void;
 export type OnCaseRemoved = (opinion: Opinion) => void;
 export type OnCaseDisplayed = (opinion: undefined | Opinion) => void;
+export type OnCourtSelectionChange = (court_id: string) => void;
 
 type AppState = {
     selectedCases: Opinion[];
     recommendations: Opinion[];
     recommendationsLoading: boolean;
     displayedCase: undefined | Opinion;
+    selectedCourts: Set<string>;
 };
 
 class App extends Component<{}, AppState> {
@@ -26,11 +28,14 @@ class App extends Component<{}, AppState> {
 
     constructor(props: {}) {
         super(props);
+        let s: Set<string>= new Set()
+        Object.keys(courtIdToName).forEach((court_id) => {s.add(court_id)})
         this.state = {
             selectedCases: [],
             recommendations: [],
             recommendationsLoading: false,
-            displayedCase: undefined
+            displayedCase: undefined,
+            selectedCourts: s,
         };
         this.caseService = new CaseService();
     }
@@ -73,9 +78,9 @@ class App extends Component<{}, AppState> {
 
     loadRecommendations = () => {
         this.setState({ recommendationsLoading: true });
-        const { selectedCases } = this.state;
+        const { selectedCases, selectedCourts  } = this.state;
         this.caseService
-            .getRecommendedCases(selectedCases, 10)
+            .getRecommendedCases(selectedCases, selectedCourts, 10)
             .then((recommendations) => this.setState({
                 recommendations,
                 recommendationsLoading: false,
@@ -114,11 +119,21 @@ class App extends Component<{}, AppState> {
         }
     }
 
+    onCourtSelectionChange = (court_id: string) => {
+        if (this.state.selectedCourts.has(court_id)) {
+            this.setState( (prevState) => { selectedCourts: prevState.selectedCourts.delete(court_id) }, () => this.loadRecommendations());
+        } else {
+            this.setState( (prevState) => { selectedCourts: prevState.selectedCourts.add(court_id) }, () => this.loadRecommendations());
+        }
+        console.log(this.state.selectedCourts)
+    }
+
     render() {
         const {
             selectedCases,
             recommendations,
             recommendationsLoading,
+            selectedCourts,
         } = this.state;
         return (
             <div className="App">
@@ -133,6 +148,8 @@ class App extends Component<{}, AppState> {
                         <CaseSearch
                             selectedCases={selectedCases}
                             onCaseSelected={this.onCaseDisplayed}
+                            onCourtSelectionChange={this.onCourtSelectionChange}
+                            selectedCourts={selectedCourts}
                         />
                         { this.mainPanel() }
                     </div>
